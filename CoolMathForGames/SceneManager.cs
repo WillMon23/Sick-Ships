@@ -5,13 +5,14 @@ using Raylib_cs;
 
 namespace CoolMathForGames
 {
-    class GameHandler
+    class SceneManager
     {
         private Scene[] _scenes = new Scene[0];
         private int _currentSceneIndex;
         private static bool _applicationShouldClose;
 
         private Player _player;
+        private Enemy[] _enemys;
 
 
         public void Start()
@@ -29,7 +30,7 @@ namespace CoolMathForGames
             
             CircleCollider playerCollider = new CircleCollider(20, _player);
             AABBCollider playerBoxCollider = new AABBCollider(50, 50, _player);
-            _player.Collider = playerCollider;
+            _player.Collider = playerBoxCollider;
 
             //Creats thr actors starting position
             Planet sun = new Planet(800, 450, "Sun", "Images/Planets/sun.png");
@@ -42,7 +43,6 @@ namespace CoolMathForGames
             moon.SetScale(0.3f, 0.3f);
 
 
-
             sun.AddChild(earth);
             earth.AddChild(moon);
 
@@ -51,15 +51,15 @@ namespace CoolMathForGames
             scene.AddActor(moon);
 
             scene.AddActor(_player);
-
-
-
             _currentSceneIndex = AddScene(scene);
         }
 
         public void Update(float deltaTime)
         {
             _scenes[_currentSceneIndex].Update(deltaTime);
+            _scenes[_currentSceneIndex].AddActor(_player.ShootAShot());
+
+            RemoverEnemy();
 
             while (Console.KeyAvailable)
                 Console.ReadKey(true);
@@ -117,6 +117,16 @@ namespace CoolMathForGames
         public static void CloseApplication()
         {
             _applicationShouldClose = true;
+        }
+
+        private void RemoverEnemy()
+        {
+            if (_enemys != null)
+                foreach (Enemy enemy in _enemys)
+                {
+                    if (!enemy.Alive)
+                        _scenes[_currentSceneIndex].RemoveActor(enemy);
+                }
         }
     }
 }

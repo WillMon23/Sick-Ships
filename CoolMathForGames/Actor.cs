@@ -75,6 +75,34 @@ namespace CoolMathForGames
             this(new Vector2 { X = x, Y = y }, name, path)
         { }
 
+        public virtual void Start()
+        {
+            _started = true;
+        }
+
+        public virtual void Update(float deltaTime)
+        {
+            UpdateTransform();
+
+            Console.WriteLine(_name + " Position: X = " + GlobalTransform.M02 + " Y = " + GlobalTransform.M12);
+        }
+
+        /// <summary>
+        /// Draws Out To The Consoole
+        /// </summary>
+        public virtual void Draw()
+        {
+            if (_sprite != null)
+                _sprite.Draw(GlobalTransform);
+
+
+        }
+
+        public virtual void End()
+        {
+
+        }
+
         /// <summary>
         /// Updates Childs Transform In Colrallastion To the Parents 
         /// Orgin
@@ -88,8 +116,6 @@ namespace CoolMathForGames
             else
                 _globalTransform = _localTransform;
 
-            //for (int i = 0; i < Children.Length; i++)
-            //    Children[i].UpdateTransform();
         }
 
         /// <summary>
@@ -137,35 +163,6 @@ namespace CoolMathForGames
             
         }
 
-        public virtual void Start()
-        {
-            _started = true;
-        }
-
-        public virtual void Update(float deltaTime)
-        {
-            UpdateTransform();
-            
-            Console.WriteLine(_name + " Position: X = " + GlobalTransform.M02 + " Y = " + GlobalTransform.M12);
-        }
-
-        /// <summary>
-        /// Draws Out To The Consoole
-        /// </summary>
-        public virtual void Draw()
-        {
-            if (_sprite != null)
-                _sprite.Draw(GlobalTransform);
-            //Collider.Draw();
-            
-            //Raylib.DrawCircleLines((int)Position.X, (int)Position.Y, 20, Color.LIME);
-        }
-
-        public virtual void End()
-        {
-
-        }
-
         /// <summary>
         /// Checks if this actor collides with another 
         /// </summary>
@@ -205,7 +202,7 @@ namespace CoolMathForGames
 
         public virtual void OnCollision( Actor actor)
         {
-            GameHandler.CloseApplication();
+            SceneManager.CloseApplication();
         }
 
         public void SetScale(float x, float y)

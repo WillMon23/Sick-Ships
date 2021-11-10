@@ -47,8 +47,6 @@ namespace CoolMathForGames
             base.Start();
 
             _tally = 0;
-
-
             Volocity = new Vector2 { X = 2, Y = 2 };
         }
 

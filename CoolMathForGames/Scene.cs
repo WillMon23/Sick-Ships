@@ -9,7 +9,11 @@ namespace CoolMathForGames
         /// <summary>
         /// Array thst contsind all the scenes 
         /// </summary>
-        private Actor[] _actors;
+        public Actor[] _actors;
+
+        public Actor[] Actors { get { return _actors; } private set { _actors = value; } }
+
+
         public Scene()
         {
             _actors = new Actor[0];
@@ -30,20 +34,20 @@ namespace CoolMathForGames
         {
             for (int i = 0; i < _actors.Length; i++)
             {
-                if (!_actors[i].Started)
-                    _actors[i].Start();
+                if (!Actors[i].Started)
+                    Actors[i].Start();
 
-                _actors[i].Update(deltaTime);
+                Actors[i].Update(deltaTime);
 
 
                 //Checks for collision
-                for (int j = 0; j < _actors.Length; j++)
+                for (int j = 0; j < Actors.Length; j++)
                 {
                     if (i > j)
                         continue;
 
-                    if (_actors[i].CheckForCollision(_actors[j]) && j != i)
-                        _actors[i].OnCollision(_actors[j]);
+                    if (Actors[i].CheckForCollision(Actors[j]) && j != i)
+                        Actors[i].OnCollision(Actors[j]);
                 }
             }
         }
@@ -64,8 +68,8 @@ namespace CoolMathForGames
         /// </summary>
         public virtual void End()
         {
-            for (int i = 0; i < _actors.Length; i++)
-                _actors[i].End();
+            for (int i = 0; i < Actors.Length; i++)
+                Actors[i].End();
         }
 
         /// <summary>
@@ -78,12 +82,12 @@ namespace CoolMathForGames
             Actor[] tempArray = new Actor[_actors.Length + 1];
 
             //Copy all the values from the original array into the temp array
-            for (int i = 0; i < _actors.Length; i++)
-                tempArray[i] = _actors[i];
+            for (int i = 0; i < Actors.Length; i++)
+                tempArray[i] = Actors[i];
             //Add the new actor to the end of the new array 
-            tempArray[_actors.Length] = actor;
+            tempArray[Actors.Length] = actor;
             //Set the old array to the new array 
-            _actors = tempArray;
+            Actors = tempArray;
         } 
 
         /// <summary>
@@ -96,7 +100,7 @@ namespace CoolMathForGames
             //Create a variable to store if the removal of the actor happened 
             bool actorRemoved = false;
             //Creat a temp array smaller then the original
-            Actor[] tempArray = new Actor[_actors.Length - 1];
+            Actor[] tempArray = new Actor[Actors.Length - 1];
             //Index of the new array 
             int j = 0;
 
@@ -104,9 +108,9 @@ namespace CoolMathForGames
             for(int i = 0; i < tempArray.Length; i++)
             {
                 // If the actor does not equal to the actor we want 
-                if (_actors[i] != actor)
+                if (Actors[i] != actor)
                 {
-                    tempArray[j] = _actors[i];
+                    tempArray[j] = Actors[i];
                     j++;
                 }
                 //Other wise return true
@@ -116,7 +120,7 @@ namespace CoolMathForGames
             //If the actor was removed 
             if (actorRemoved)
                 //Sets the actors to 
-                _actors = tempArray;
+                Actors = tempArray;
 
             return actorRemoved;
         }

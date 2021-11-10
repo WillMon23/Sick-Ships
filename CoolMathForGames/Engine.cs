@@ -13,7 +13,7 @@ namespace CoolMathForGames
     {
         Stopwatch _stopwatch = new Stopwatch();
 
-        GameHandler _gameHandler = new GameHandler();
+        SceneManager _gameHandler = new SceneManager();
 
         /// <summary>
         /// Called to begin the application 

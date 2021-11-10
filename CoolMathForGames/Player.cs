@@ -8,12 +8,15 @@ namespace CoolMathForGames
 {
     class Player : Actor
     {
-        private float _speed;
+        private static float _speed;
         private Vector2 _volocity;
+        private int _lives;
         
-        public float Speed { get { return _speed; } set { _speed = value; } }
+        public static float Speed { get { return _speed; } set { _speed = value; } }
 
         public Vector2 Volocity {  get { return _volocity; } set { _volocity = value; } }
+
+        public int Lives {  get { return _lives; } set { _lives = value; } }
 
         public Player( float x, float y, float speed, string name, string path = "") 
             :base(   x,  y,  name , path)
@@ -31,7 +34,11 @@ namespace CoolMathForGames
 
         public override void Update(float deltaTime)
         {
-            
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_SPACE))
+                ShootAShot();
+                
+
+
 
             int xDirection = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_A)) 
                 + Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_D));
@@ -60,6 +67,24 @@ namespace CoolMathForGames
         {
             base.Draw();
             Collider.Draw();
+        }
+        
+        /// <summary>
+        /// Creats bullets for the player to shot at there target
+        /// </summary>
+        /// <returns></returns>
+        public Bullet ShootAShot()
+        {
+            //Random number genarator 
+            Random rng = new Random();
+
+            int chance = rng.Next(1, 5);
+
+            Bullet shot = new Bullet(LocalPosition, 10f, this, "PlayerBullet", "Images/bullet.png");
+
+
+            return shot;
+
         }
 
 
