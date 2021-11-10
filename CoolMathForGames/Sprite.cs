@@ -4,7 +4,7 @@ using System.Text;
 using Raylib_cs;
 using MathLibrary;
 
-namespace CoolMathForGames
+namespace Sick_Ship
 {
     class Sprite
     {

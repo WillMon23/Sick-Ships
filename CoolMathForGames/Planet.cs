@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CoolMathForGames
+namespace Sick_Ship
 {
     class Planet : Actor
     {

@@ -7,7 +7,7 @@ using Raylib_cs;
 using System.Diagnostics;
 
 
-namespace CoolMathForGames
+namespace Sick_Ship
 {
     class Engine
     {

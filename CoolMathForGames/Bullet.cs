@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using MathLibrary;
 
-namespace CoolMathForGames
+namespace Sick_Ship
 {
     class Bullet : Actor
     {
@@ -28,7 +28,14 @@ namespace CoolMathForGames
             _actorHandler = actorHandler;
         }
 
-       
+        public override void Start()
+        {
+            base.Start();
+
+            CircleCollider thisCircleCollider = new CircleCollider(10, this);
+            Collider = thisCircleCollider;
+
+        }
 
         public override void Update(float deltaTime)
         {
@@ -42,8 +49,8 @@ namespace CoolMathForGames
         public override void Draw()
         {
             base.Draw();
+            Collider.Draw();
         }
-
 
     }
 }

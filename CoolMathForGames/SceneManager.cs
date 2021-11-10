@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Text;
 using Raylib_cs;
 
-namespace CoolMathForGames
+namespace Sick_Ship
 {
     class SceneManager
     {
-        private Scene[] _scenes = new Scene[0];
-        private int _currentSceneIndex;
+        private static Scene[] _scenes = new Scene[0];
+        private static int _currentSceneIndex;
         private static bool _applicationShouldClose;
 
         private Player _player;
@@ -26,7 +26,7 @@ namespace CoolMathForGames
             Scene scene = new Scene();
 
             //Lead Protaganise 
-            _player = new Player(20, 800, 500, "Player", "Images/player.png");
+            _player = new Player(200, 800, 500, "Player", "Images/player.png");
             
             CircleCollider playerCollider = new CircleCollider(20, _player);
             AABBCollider playerBoxCollider = new AABBCollider(50, 50, _player);
@@ -57,9 +57,7 @@ namespace CoolMathForGames
         public void Update(float deltaTime)
         {
             _scenes[_currentSceneIndex].Update(deltaTime);
-            _scenes[_currentSceneIndex].AddActor(_player.ShootAShot());
 
-            RemoverEnemy();
 
             while (Console.KeyAvailable)
                 Console.ReadKey(true);
@@ -119,14 +117,14 @@ namespace CoolMathForGames
             _applicationShouldClose = true;
         }
 
-        private void RemoverEnemy()
+        public static void RemoverActor(Actor actor)
         {
-            if (_enemys != null)
-                foreach (Enemy enemy in _enemys)
-                {
-                    if (!enemy.Alive)
-                        _scenes[_currentSceneIndex].RemoveActor(enemy);
-                }
+            _scenes[_currentSceneIndex].RemoveActor(actor);
+        }
+
+        public static void AddActorToScene(Actor actor)
+        {
+            _scenes[_currentSceneIndex].AddActor(actor);
         }
     }
 }

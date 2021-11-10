@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CoolMathForGames
+namespace Sick_Ship
 {
     class Program
     {

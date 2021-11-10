@@ -4,7 +4,7 @@ using System.Text;
 using MathLibrary;
 using Raylib_cs;
 
-namespace CoolMathForGames
+namespace Sick_Ship
 {
     class Player : Actor
     {
@@ -22,21 +22,18 @@ namespace CoolMathForGames
             :base(   x,  y,  name , path)
         {
             _speed = speed;
-            
         }
 
         public override void Start()
         {
             base.Start();
-            Volocity = new Vector2 { X = 2, Y = 3 };
             SetScale(100, 50);
         }
 
         public override void Update(float deltaTime)
         {
-            if (Raylib.IsKeyDown(KeyboardKey.KEY_SPACE))
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_SPACE))  
                 ShootAShot();
-                
 
 
 
@@ -73,18 +70,17 @@ namespace CoolMathForGames
         /// Creats bullets for the player to shot at there target
         /// </summary>
         /// <returns></returns>
-        public Bullet ShootAShot()
+        public void  ShootAShot()
         {
             //Random number genarator 
             Random rng = new Random();
 
             int chance = rng.Next(1, 5);
 
-            Bullet shot = new Bullet(LocalPosition, 10f, this, "PlayerBullet", "Images/bullet.png");
+            Bullet shot = new Bullet(new Vector2(WorldPosition.X, WorldPosition.Y), 10f, this, "PlayerBullet", "Images/bullet.png");
+            shot.SetScale(50, 50);
 
-
-            return shot;
-
+            SceneManager.AddActorToScene(shot);
         }
 
 

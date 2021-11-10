@@ -4,7 +4,7 @@ using System.Text;
 using MathLibrary;
 using Raylib_cs;
 
-namespace CoolMathForGames
+namespace Sick_Ship
 {
     class CircleCollider : Collider
     {
