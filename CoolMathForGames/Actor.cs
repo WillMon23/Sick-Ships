@@ -63,6 +63,19 @@ namespace CoolMathForGames
         }
 
         /// <summary>
+        /// Constructor 
+        /// The classification of what it means to be a actor in 
+        /// my game 
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="name"></param>
+        /// <param name="path"></param>
+        public Actor(float x, float y, string name = "Actor", string path = "") :
+            this(new Vector2 { X = x, Y = y }, name, path)
+        { }
+
+        /// <summary>
         /// Updates Childs Transform In Colrallastion To the Parents 
         /// Orgin
         /// </summary>
@@ -124,9 +137,6 @@ namespace CoolMathForGames
             
         }
 
-        public Actor( float x, float y,  string name = "Actor", string path = "") :
-            this (new Vector2 { X = x, Y = y }, name, path){ }
-
         public virtual void Start()
         {
             _started = true;
@@ -135,7 +145,6 @@ namespace CoolMathForGames
         public virtual void Update(float deltaTime)
         {
             UpdateTransform();
-            Rotate(deltaTime);
             
             Console.WriteLine(_name + " Position: X = " + GlobalTransform.M02 + " Y = " + GlobalTransform.M12);
         }
@@ -196,7 +205,7 @@ namespace CoolMathForGames
 
         public virtual void OnCollision( Actor actor)
         {
-            Engine.CloseApplication();
+            GameHandler.CloseApplication();
         }
 
         public void SetScale(float x, float y)

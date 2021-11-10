@@ -26,6 +26,7 @@ namespace CoolMathForGames
         {
             base.Start();
             Volocity = new Vector2 { X = 2, Y = 3 };
+            SetScale(100, 50);
         }
 
         public override void Update(float deltaTime)
