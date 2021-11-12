@@ -48,11 +48,12 @@ namespace Sick_Ship
 
             _tally = 0;
             Volocity = new Vector2 { X = 2, Y = 2 };
+            SetScale(50, 50);
         }
 
         public override void Update(float deltaTime)
         {
-            Volocity = _target.LocalPosition - LocalPosition;
+            Volocity = _target.WorldPosition - WorldPosition;
 
             if (Volocity.Magnitude > 0)
                 Forward = Volocity.Normalzed;
@@ -62,7 +63,7 @@ namespace Sick_Ship
             //Posistion += Volocity.Normalzed * Speed * deltaTime;
             if (GetTargetInSight())
             { 
-                LocalPosition += Volocity.Normalzed * Speed * deltaTime;
+                WorldPosition += Volocity.Normalzed * Speed * deltaTime;
             }
 
             base.Update(deltaTime);
@@ -82,11 +83,11 @@ namespace Sick_Ship
         /// <returns></returns>
         private bool GetTargetInSight()
         {
-            Vector2 directionTarget = (_target.LocalPosition - LocalPosition).Normalzed;
+            Vector2 directionTarget = (_target.LocalPosition - WorldPosition).Normalzed;
 
             float distance = Vector2.Distance(_target.LocalPosition, LocalPosition);
 
-            float cosTarget = distance / LocalPosition.Magnitude;
+            float cosTarget = distance / WorldPosition.Magnitude;
 
             return /*cosTarget < _lineOfSightRange && */(distance < _lineOfSightRange) || Vector2.DotProduct(directionTarget, Forward) < 0;
         }

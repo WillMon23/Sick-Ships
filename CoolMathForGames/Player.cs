@@ -50,7 +50,7 @@ namespace Sick_Ship
             if (Volocity.Magnitude > 0)
                 Forward = Volocity.Normalzed;
 
-            LocalPosition += Volocity;
+            WorldPosition += Volocity;
             
             base.Update(deltaTime);
         }

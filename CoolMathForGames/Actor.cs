@@ -38,7 +38,31 @@ namespace Sick_Ship
 
         public Vector2 LocalPosition { get { return new Vector2(_localTransform.M02, _localTransform.M12); } 
                                        set { SetTranslation(value.X, value.Y); } }
-        public Vector2 WorldPosition { get; set; }
+        public float ScaleX { get { return new Vector2(_scale.M00, _scale.M10).Magnitude; } }
+
+        public float ScaleY { get { return new Vector2(_scale.M01, _scale.M11).Magnitude; } }
+
+        public Vector2 WorldPosition
+        {
+            //Return the global transform's T column
+            get { return new Vector2(_globalTransform.M02, _globalTransform.M12); }
+            set
+            {
+                //If the parent has a parent...
+                if (Parent != null)
+                {
+                    //...convert the world cooridinates into local coordinates and translate the actor
+                    Vector2 offset = value - Parent.WorldPosition;
+                    SetTranslation(offset.X / Parent.ScaleX, offset.Y / Parent.ScaleY);
+                }
+                //If this actor doesn't have a parent...
+                else
+                    //...set local position to be the given value
+                    SetTranslation(value.X, value.Y);
+            }
+        }
+
+
 
         public Matrix3 GlobalTransform { get { return _globalTransform; } private set { _globalTransform = value; } }
 
