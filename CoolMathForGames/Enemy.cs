@@ -53,17 +53,20 @@ namespace Sick_Ship
 
         public override void Update(float deltaTime)
         {
-            Volocity = _target.WorldPosition - WorldPosition;
+            if (_target != null)
+            {
+                Volocity = _target.WorldPosition - WorldPosition;
 
-            if (Volocity.Magnitude > 0)
-                Forward = Volocity.Normalzed;
+                if (Volocity.Magnitude > 0)
+                    Forward = Volocity.Normalzed;
 
-            LocalPosition += Volocity.Normalzed * 10 * deltaTime;
+                WorldPosition += Volocity.Normalzed * 10 * deltaTime;
 
-            //Posistion += Volocity.Normalzed * Speed * deltaTime;
-            if (GetTargetInSight())
-            { 
-                WorldPosition += Volocity.Normalzed * Speed * deltaTime;
+                //Posistion += Volocity.Normalzed * Speed * deltaTime;
+                if (GetTargetInSight())
+                {
+                    WorldPosition += Volocity.Normalzed * Speed * deltaTime;
+                }
             }
 
             base.Update(deltaTime);
@@ -83,13 +86,14 @@ namespace Sick_Ship
         /// <returns></returns>
         private bool GetTargetInSight()
         {
-            Vector2 directionTarget = (_target.LocalPosition - WorldPosition).Normalzed;
+            
+                Vector2 directionTarget = (_target.LocalPosition - WorldPosition).Normalzed;
 
-            float distance = Vector2.Distance(_target.LocalPosition, LocalPosition);
+                float distance = Vector2.Distance(_target.LocalPosition, WorldPosition);
 
-            float cosTarget = distance / WorldPosition.Magnitude;
+                float cosTarget = distance / WorldPosition.Magnitude;
 
-            return /*cosTarget < _lineOfSightRange && */(distance < _lineOfSightRange) || Vector2.DotProduct(directionTarget, Forward) < 0;
+                return /*cosTarget < _lineOfSightRange && */(distance < _lineOfSightRange) || Vector2.DotProduct(directionTarget, Forward) < 0;
         }
 
         ///// <summary>

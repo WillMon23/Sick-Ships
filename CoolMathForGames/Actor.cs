@@ -10,7 +10,6 @@ namespace Sick_Ship
     {
         private string _name;
         private bool _started;
-        private Vector2 _froward = new Vector2(1, 0);
         private Collider _collider;
         private Matrix3 _globalTransform = Matrix3.Identity;
         private Matrix3 _localTransform = Matrix3.Identity;
@@ -18,64 +17,95 @@ namespace Sick_Ship
         private Matrix3 _rotation = Matrix3.Identity;
         private Matrix3 _scale = Matrix3.Identity;
         private Actor[] _children = new Actor[0];
-        private Actor _parent;
+        private Actor _parent = null;
         private Sprite _sprite;
-
-        
 
         /// <summary>
         /// True if the start function has been called for this actor
         /// </summary>
         public bool Started { get { return _started; } }
 
+        /// <summary>
+        /// Actos name
+        /// </summary>
         public string Name { get { return _name; } }
 
+        /// <summary>
+        /// Sets new forward based on the direction turning
+        /// </summary>
         public Vector2 Forward { get { return new Vector2(_rotation.M00, _rotation.M10); } 
                                  set {
                                         Vector2 point = value.Normalzed + LocalPosition;
                                         LookAt(point);
                                      } }
 
-        public Vector2 LocalPosition { get { return new Vector2(_localTransform.M02, _localTransform.M12); } 
+        /// <summary>
+        /// Postion based on the local postion of the actor in conjuction
+        /// if they have a parent or not
+        /// </summary>
+        public Vector2 LocalPosition { get { return new Vector2(LocalTransform.M02, LocalTransform.M12); } 
                                        set { SetTranslation(value.X, value.Y); } }
-        public float ScaleX { get { return new Vector2(_scale.M00, _scale.M10).Magnitude; } }
-
-        public float ScaleY { get { return new Vector2(_scale.M01, _scale.M11).Magnitude; } }
 
         public Vector2 WorldPosition
         {
             //Return the global transform's T column
-            get { return new Vector2(_globalTransform.M02, _globalTransform.M12); }
+            get { return new Vector2(GlobalTransform.M02, GlobalTransform.M12); }
             set
             {
-                //If the parent has a parent...
+                //If the parent isn't null...
                 if (Parent != null)
                 {
-                    //...convert the world cooridinates into local coordinates and translate the actor
-                    Vector2 offset = value - Parent.WorldPosition;
-                    SetTranslation(offset.X / Parent.ScaleX, offset.Y / Parent.ScaleY);
+                    //...Convert the world cooridinates into local cooridinates and translate the actor
+                    float xOffset = (value.X - Parent.WorldPosition.X) / new Vector2(GlobalTransform.M00, GlobalTransform.M10).Magnitude;
+                    float yOffset = (value.Y - Parent.WorldPosition.Y) / new Vector2(GlobalTransform.M10, GlobalTransform.M11).Magnitude;
+                    SetTranslation(xOffset, yOffset);
                 }
-                //If this actor doesn't have a parent...
+                //If this actor doesnt have a parent...
                 else
-                    //...set local position to be the given value
-                    SetTranslation(value.X, value.Y);
+                {
+                    //...Set the position to be the given value
+                    LocalPosition = value;
+                }
+
             }
+
         }
 
-
-
+        /// <summary>
+        /// Global representation Translation * Rotation * Scale 
+        /// </summary>
         public Matrix3 GlobalTransform { get { return _globalTransform; } private set { _globalTransform = value; } }
 
+        /// <summary>
+        /// Local Repesentation based of the parent
+        /// </summary>
         public Matrix3 LocalTransform { get { return _localTransform; } private set { _localTransform = value; } }
 
+        /// <summary>
+        /// Parent Actor
+        /// </summary>
         public Actor Parent { get { return _parent; } set { _parent = value; } }
 
+        /// <summary>
+        /// Conditional Children of the parent 
+        /// </summary>
         public Actor[] Children { get { return _children; } set { _children = value; } }
 
+        /// <summary>
+        /// Scaling size of the actor
+        /// </summary>
         public Vector2 Size { get { return new Vector2(_scale.M00, _scale.M11); } set { SetScale(value.X, value.Y); } }
 
+        /// <summary>
+        /// Type of collision 
+        /// for Circular collisiob 
+        /// to AABB collision
+        /// </summary>
         public Collider Collider { get { return _collider; } set { _collider = value; } }
 
+        /// <summary>
+        /// Image the actor imposes as
+        /// </summary>
         public Sprite Sprite { get { return _sprite; } set { _sprite = value; } }
 
         public Actor(Vector2 position, string name = "Actor", string path = "")
@@ -103,12 +133,16 @@ namespace Sick_Ship
         {
             _started = true;
         }
-
+        
+        /// <summary>
+        /// Update once per frame 
+        /// </summary>
+        /// <param name="deltaTime"></param>
         public virtual void Update(float deltaTime)
         {
             UpdateTransform();
 
-            Console.WriteLine(_name + " Position: X = " + GlobalTransform.M02 + " Y = " + GlobalTransform.M12);
+            Console.WriteLine(Name + " Position: X = " + GlobalTransform.M02 + " Y = " + GlobalTransform.M12);
         }
 
         /// <summary>
@@ -118,8 +152,6 @@ namespace Sick_Ship
         {
             if (_sprite != null)
                 _sprite.Draw(GlobalTransform);
-
-
         }
 
         public virtual void End()
@@ -133,12 +165,12 @@ namespace Sick_Ship
         /// </summary>
         public void UpdateTransform()
         {
-            _localTransform = _translation * _rotation * _scale;
+            LocalTransform = _translation * _rotation * _scale;
 
             if (Parent != null)
-                _globalTransform = _parent.GlobalTransform * _localTransform;
+                GlobalTransform = Parent.GlobalTransform * LocalTransform;
             else
-                _globalTransform = _localTransform;
+                GlobalTransform = LocalTransform;
 
         }
 
@@ -167,21 +199,21 @@ namespace Sick_Ship
         public bool RemoveChild(Actor child)
         {
             bool removed = false;
-            Actor[] temp = new Actor[_children.Length - 1];
+            Actor[] temp = new Actor[Children.Length - 1];
 
             int j = 0;
-            for (int i = 0; i < _children.Length; i++)
+            for (int i = 0; i < Children.Length; i++)
             {
-                if (_children[i] != child)
+                if (Children[i] != child)
                 {
-                    temp[j] = _children[i];
+                    temp[j] = Children[i];
                     j++;
                 }
                 else
                     removed = true;
             }
             if (removed)
-                _children = temp;
+                Children = temp;
 
             return removed;
             
@@ -210,20 +242,39 @@ namespace Sick_Ship
             _translation = Matrix3.CreateTranslation(transkationX,translationY);
         }
 
+        /// <summary>
+        /// Hard tanslate on base on the 
+        /// </summary>
+        /// <param name="translationX"></param>
+        /// <param name="translationY"></param>
         public void Translate(float translationX, float translationY)
         {
             _translation *= Matrix3.CreateTranslation(translationX, translationY);
         }
 
+        /// <summary>
+        /// Hard set the rotation on raduians 
+        /// </summary>
+        /// <param name="radians"></param>
         public void SetRoation(float radians)
         {
             _rotation = Matrix3.CreateRotation(radians);
         }
+
+        /// <summary>
+        /// Rotatas the sprite based on how man raidans 
+        /// </summary>
+        /// <param name="radians"></param>
         public void Rotate(float radians)
         {
             _rotation *= Matrix3.CreateRotation(radians);
         } 
 
+        /// <summary>
+        /// Base condition if there is a collision
+        /// 
+        /// </summary>
+        /// <param name="actor"></param>
         public virtual void OnCollision( Actor actor)
         {
             SceneManager.CloseApplication();
@@ -252,7 +303,7 @@ namespace Sick_Ship
         public void LookAt(Vector2 position)
         {
             //Find the direction the actor should look in
-            Vector2 direction = (position - LocalPosition).Normalzed;
+            Vector2 direction = (position - WorldPosition).Normalzed;
 
             //Use the dot product to find the andle the actor needs to rotate 
             float dotProd = Vector2.DotProduct(direction, Forward);

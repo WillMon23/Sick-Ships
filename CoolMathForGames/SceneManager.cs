@@ -33,7 +33,7 @@ namespace Sick_Ship
         {
             
             if((_currentSceneIndex < _scenes.Length))
-                if (Raylib.IsKeyDown(KeyboardKey.KEY_SPACE))
+                if (Raylib.IsKeyDown(KeyboardKey.KEY_Q))
                     _currentSceneIndex++;
 
             _scenes[_currentSceneIndex].Update(deltaTime);
@@ -175,27 +175,34 @@ namespace Sick_Ship
             _applicationShouldClose = true;
         }
 
+        /// <summary>
+        /// Removes Actors from the scene 
+        /// </summary>
+        /// <param name="actor"></param>
         public static void RemoverActor(Actor actor)
         {
             _scenes[_currentSceneIndex].RemoveActor(actor);
             actor.End();
         }
 
-        public static void AddActorToScene(Actor actor)
+        public static void AddActor(Actor actor)
         {
             _thisSceen.AddActor(actor);
         }
 
+        /// <summary>
+        /// Creats enemy to spwan based on what scene 
+        /// </summary>
         private void EnemySpawner()
         {
             int enemyCounter = 0;
             _enemys = new Enemy[(_currentSceneIndex + 1) * 5];
             for(int i = 0; i < _enemys.Length; i++)
             {
-                Enemy enemy = new Enemy(1500, (100 * i), 25 * (i + 1), _player, "Enemy_" + (i + 1), "Images/enemy.png");
+                Enemy enemy = new Enemy(1500, (220 * i), 25 * (i + 1), _player, "Enemy_" + (i + 1), "Images/enemy.png");
                 CircleCollider circleCollider = new CircleCollider(20, enemy);
                 enemy.Collider = circleCollider;
-                AddActorToScene(enemy);
+                AddActor(enemy);
                 enemyCounter++;
             }
         }

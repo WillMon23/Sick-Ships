@@ -102,6 +102,14 @@ namespace MathLibrary
             return temp;
         }
 
+        /// <summary>
+        /// Overloads the minus oprator in order to 
+        /// subtract the diffrence betweent two
+        /// matixes
+        /// </summary>
+        /// <param name="lhs">left hand side</param>
+        /// <param name="rhs">right hand side</param>
+        /// <returns></returns>
         public static Matrix3 operator -(Matrix3 lhs, Matrix3 rhs)
         {
             Matrix3 temp = new Matrix3();
@@ -124,6 +132,13 @@ namespace MathLibrary
             return temp;
         }
 
+        /// <summary>
+        /// Overloads the multiplication oprator in order to 
+        /// multiply two matrix3
+        /// </summary>
+        /// <param name="lhs">left hand side</param>
+        /// <param name="rhs">right hand side</param>
+        /// <returns></returns>
         public static Matrix3 operator *(Matrix3 lhs, Matrix3 rhs)
         {
             return new Matrix3

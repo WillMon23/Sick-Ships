@@ -20,8 +20,14 @@ namespace Sick_Ship
         /// </summary>
         public string Text { get { return _text; } set { _text = value; } }
 
+        /// <summary>
+        /// With of the text box
+        /// </summary>
         public int Width { get { return _width; } set { _width = value; } }
 
+        /// <summary>
+        /// Hiegth of the text box
+        /// </summary>
         public int Height { get { return _height; } set { _height = value; } }
 
 

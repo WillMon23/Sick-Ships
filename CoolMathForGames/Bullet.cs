@@ -31,6 +31,7 @@ namespace Sick_Ship
         public override void Start()
         {
             base.Start();
+            SetScale(50, 50);
 
             CircleCollider thisCircleCollider = new CircleCollider(10, this);
             Collider = thisCircleCollider;
@@ -41,7 +42,7 @@ namespace Sick_Ship
         {
             Forward = ActorHandler.Forward;
 
-            LocalPosition += Forward * 10f * deltaTime;
+            WorldPosition += new Vector2(1,0) * 10f * deltaTime;
 
             Rotate(deltaTime);
         }
@@ -49,7 +50,7 @@ namespace Sick_Ship
         public override void Draw()
         {
             base.Draw();
-            Collider.Draw();
+            //Collider.Draw();
         }
 
     }

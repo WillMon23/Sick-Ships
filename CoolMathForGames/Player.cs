@@ -27,22 +27,28 @@ namespace Sick_Ship
         public override void Start()
         {
             base.Start();
-            SetScale(100, 50);
+            SetScale(50, 50);
         }
 
+        /// <summary>
+        /// Update raylib once perframe
+        /// </summary>
+        /// <param name="deltaTime"></param>
         public override void Update(float deltaTime)
         {
             if (Raylib.IsKeyDown(KeyboardKey.KEY_SPACE))  
-                ShootAShot();
+                 ShootAShot();
 
 
-
+            //Check if a particular input has been press
+            //Then returns 0, 1 or -1 if it was pressed or released
             int xDirection = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_A)) 
                 + Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_D));
 
             int yDirection = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_W)) 
                 + Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_S));
 
+            // Places the direction in a new vector 2 for every update
             Vector2 moveDirecton = new Vector2(xDirection, yDirection);
 
             Volocity =  moveDirecton * Speed * deltaTime;
@@ -60,6 +66,9 @@ namespace Sick_Ship
 
         }
 
+        /// <summary>
+        /// Draws to Raylib once per frame 
+        /// </summary>
         public override void Draw()
         {
             base.Draw();
@@ -80,7 +89,7 @@ namespace Sick_Ship
             Bullet shot = new Bullet(new Vector2(WorldPosition.X, WorldPosition.Y), 10f, this, "PlayerBullet", "Images/bullet.png");
             shot.SetScale(50, 50);
 
-            SceneManager.AddActorToScene(shot);
+            SceneManager.AddActor(shot);
         }
 
 
