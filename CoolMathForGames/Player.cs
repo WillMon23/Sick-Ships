@@ -63,7 +63,8 @@ namespace Sick_Ship
 
         public override void OnCollision(Actor actor)
         {
-
+            if (actor.Name == "Bullet")
+                Console.WriteLine("Player Collided With Bullet");
         }
 
         /// <summary>
@@ -77,7 +78,7 @@ namespace Sick_Ship
         
         /// <summary>
         /// Creats bullets for the player to shot at there target
-        /// </summary>
+        /// </summary>sd
         /// <returns></returns>
         public void  ShootAShot()
         {
@@ -86,7 +87,7 @@ namespace Sick_Ship
 
             int chance = rng.Next(1, 5);
 
-            Bullet shot = new Bullet(new Vector2(WorldPosition.X, WorldPosition.Y), 10f, this, "PlayerBullet", "Images/bullet.png");
+            Bullet shot = new Bullet(new Vector2(WorldPosition.X, WorldPosition.Y), 10f, this, "PlayerBullet");
             shot.SetScale(50, 50);
 
             SceneManager.AddActor(shot);

@@ -152,6 +152,8 @@ namespace Sick_Ship
         {
             if (_sprite != null)
                 _sprite.Draw(GlobalTransform);
+
+            
         }
 
         public virtual void End()

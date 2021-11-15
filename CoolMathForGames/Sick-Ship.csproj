@@ -11,6 +11,8 @@
     <None Remove="Images\Planets\earth.png" />
     <None Remove="Images\Planets\moon.png" />
     <None Remove="Images\Planets\sun.png" />
+    <None Remove="Images\Upgrades\Adaption.png" />
+    <None Remove="Images\Upgrades\ScaleUp.png" />
     <None Remove="player.png" />
   </ItemGroup>
 
@@ -31,6 +33,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\player.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Upgrades\Adaption.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Upgrades\ScaleUp.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

@@ -5,11 +5,14 @@ using Raylib_cs;
 
 namespace Sick_Ship
 {
+
     class SceneManager
     {
         private static Scene[] _scenes = new Scene[0];
         private static int _currentSceneIndex;
         private static bool _applicationShouldClose;
+
+        private int _currentAmountOfEnemies;
 
         public static Scene _thisSceen = new Scene();
 
@@ -93,6 +96,10 @@ namespace Sick_Ship
             Planet moon = new Planet(1f, 1f, "Moon", "Images/Planets/moon.png");
             moon.SetScale(0.3f, 0.3f);
 
+            Upgrades scaler = new Upgrades(700, 700, "Scaler", "Images/Upgrades/Adaption.png");
+
+            Bullet bullet = new Bullet(new MathLibrary.Vector2(700,300) , 20, _player, "Bullet", "Images/bullet.png");
+
             sun.AddChild(earth);
             earth.AddChild(moon);
 
@@ -100,7 +107,12 @@ namespace Sick_Ship
             _thisSceen.AddActor(earth);
             _thisSceen.AddActor(moon);
 
+            _thisSceen.AddActor(bullet);
+            
+
             _thisSceen.AddActor(_player);
+            
+            _thisSceen.AddActor(scaler);
 
             AddScene(_thisSceen);
 
@@ -193,18 +205,17 @@ namespace Sick_Ship
         /// <summary>
         /// Creats enemy to spwan based on what scene 
         /// </summary>
-        private void EnemySpawner()
+        private int EnemySpawner()
         {
             int enemyCounter = 0;
             _enemys = new Enemy[(_currentSceneIndex + 1) * 5];
             for(int i = 0; i < _enemys.Length; i++)
             {
                 Enemy enemy = new Enemy(1500, (220 * i), 25 * (i + 1), _player, "Enemy_" + (i + 1), "Images/enemy.png");
-                CircleCollider circleCollider = new CircleCollider(20, enemy);
-                enemy.Collider = circleCollider;
                 AddActor(enemy);
                 enemyCounter++;
             }
+            return enemyCounter;
         }
     }
 }

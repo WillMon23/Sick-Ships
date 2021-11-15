@@ -49,6 +49,9 @@ namespace Sick_Ship
             _tally = 0;
             Volocity = new Vector2 { X = 2, Y = 2 };
             SetScale(50, 50);
+
+            CircleCollider circleCollider = new CircleCollider(50, this);
+            Collider = circleCollider;
         }
 
         public override void Update(float deltaTime)
@@ -62,12 +65,15 @@ namespace Sick_Ship
 
                 WorldPosition += Volocity.Normalzed * 10 * deltaTime;
 
-                //Posistion += Volocity.Normalzed * Speed * deltaTime;
                 if (GetTargetInSight())
                 {
-                    WorldPosition += Volocity.Normalzed * Speed * deltaTime;
+                    WorldPosition += Volocity.Normalzed * (Speed * 2) * deltaTime;
+                    Bullet shot = new Bullet(WorldPosition, 20f, this);
                 }
             }
+            else
+                WorldPosition += Volocity.Normalzed * Speed * deltaTime;
+                 
 
             base.Update(deltaTime);
             
@@ -96,43 +102,12 @@ namespace Sick_Ship
                 return /*cosTarget < _lineOfSightRange && */(distance < _lineOfSightRange) || Vector2.DotProduct(directionTarget, Forward) < 0;
         }
 
-        ///// <summary>
-        ///// Creats Bullets to be sepolyed by the enemy 
-        ///// </summary>
-        //private void AddBullet()
-        //{
-        //    Random rng = new Random();
-
-        //    int chance = rng.Next(1, 5);
-
-        //    Bullet shot = new Bullet('.', Posistion, Color.GREEN, (Speed * 2), new Vector2(-1, 0), _currentScene, "EnemyBullet");
-
-
-        //    if (chance == 1)
-        //        shot = new Bullet('.', Posistion, Color.RED, (Speed * 3), new Vector2(-1, 0), _currentScene, "EnemyBullet");
-
-        //    else if (chance == 2)
-        //        shot = new Bullet('.', Posistion, Color.BLUE, (Speed * 4), new Vector2(-1, 0), _currentScene, "EnemyBullet");
-
-        //    else if (chance >= 3)
-        //        shot = new Bullet('.', Posistion, Color.GREEN, (Speed * 5), new Vector2(-1, 0), _currentScene, "EnemyBullet");
-
-        //    CircleCollider shotCircleCollider = new CircleCollider(10, shot);
-        //    shot.Collider = shotCircleCollider;
-
-
-        //    _currentScene.AddActor(shot);
-        //}
         public override void Draw()
         {
             base.Draw();
             Collider.Draw();
         }
 
-        private void Fallow()
-        {
-
-        }
 
     }
 }
