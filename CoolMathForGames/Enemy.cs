@@ -13,7 +13,9 @@ namespace Sick_Ship
 
         private Vector2 _volocity;
 
-        private Actor _target;
+        private bool _target;
+
+        private float _coolDown;
 
         private float _lineOfSightRange = 200f;
 
@@ -36,7 +38,7 @@ namespace Sick_Ship
         /// <param name="y">y cooridinet position</param>
         /// <param name="name"> classification</param>
         /// <param name="color">There Color</param>
-        public Enemy(float x, float y, float speed,  string name, Actor target = null, string path = "Images/enemy.png") : base( x, y, name, path)
+        public Enemy(float x, float y, float speed,  string name, bool target = false, string path = "Images/enemy.png") : base( x, y, name, path)
         { 
             _speed = speed;
             _target = target;
@@ -47,7 +49,7 @@ namespace Sick_Ship
             base.Start();
 
             GameManager.EnemyCounter++;
-
+            Forward = new Vector2(-1, 0);
             _tally = 0;
             Volocity = new Vector2 { X = 2, Y = 2 };
             SetScale(50, 50);
@@ -58,27 +60,31 @@ namespace Sick_Ship
 
         public override void Update(float deltaTime)
         {
-            if (_target != null)
+            if (!_target)
             {
-                Volocity = _target.WorldPosition - WorldPosition;
+                Volocity = GameManager.Player.WorldPosition - LocalPosition;
 
                 if (Volocity.Magnitude > 0)
                     Forward = Volocity.Normalzed;
 
-                WorldPosition += Volocity.Normalzed * 10 * deltaTime;
+                LocalPosition += Volocity.Normalzed * 10 * deltaTime;
 
                 if (GetTargetInSight())
                 {
-                    WorldPosition += Volocity.Normalzed * (Speed * 2) * deltaTime;
-                    Bullet shot = new Bullet(WorldPosition.X, WorldPosition.Y);
-                    CircleCollider circleCollider = new CircleCollider(20, shot);
-                    shot.Collider = circleCollider;
-                    SceneManager.AddActor(shot);
+                    LocalPosition += Volocity.Normalzed * (Speed * 2) * deltaTime;
+                    
                 }
             }
             else
-                WorldPosition += Volocity.Normalzed * Speed * deltaTime;
-                 
+                LocalPosition += Volocity.Normalzed * Speed * deltaTime;
+
+            if (_coolDown >= 2f)
+            {
+                Bullet shot = new Bullet(LocalPosition.X, LocalPosition.Y, Speed * 2, "EnemyBullet", "Images/bullet.png", this);
+                SceneManager.AddActor(shot);
+                _coolDown = 0;
+            }
+            _coolDown += deltaTime;
 
             base.Update(deltaTime);
             
@@ -98,13 +104,13 @@ namespace Sick_Ship
         private bool GetTargetInSight()
         {
             
-                Vector2 directionTarget = (_target.LocalPosition - WorldPosition).Normalzed;
+                Vector2 directionTarget = (GameManager.Player.LocalPosition - WorldPosition).Normalzed;
 
-                float distance = Vector2.Distance(_target.LocalPosition, WorldPosition);
+                float distance = Vector2.Distance(GameManager.Player.LocalPosition, WorldPosition);
 
-                float cosTarget = distance / WorldPosition.Magnitude;
+                float cosTarget = distance / LocalPosition.Magnitude;
 
-                return /*cosTarget < _lineOfSightRange && */(distance < _lineOfSightRange) || Vector2.DotProduct(directionTarget, Forward) < 0;
+                return (distance < _lineOfSightRange) || Vector2.DotProduct(directionTarget, Forward) < 0;
         }
 
         public override void Draw()

@@ -45,6 +45,11 @@ namespace Sick_Ship
                 SceneManager.RemoverActor(this);
         }
 
+        public override void Draw()
+        {
+            base.Draw();
+            Collider.Draw();
+        }
 
     }
 }

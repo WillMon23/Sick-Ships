@@ -7,17 +7,29 @@ namespace Sick_Ship
 {
     class Bullet : Actor
     {
-        Actor _handler;
+        private Actor _handler;
+
+        private float _speed;
+
+        private float _lifeSpan;
 
         public Actor Handler { get { return _handler; } set { _handler = value; } } 
-        public Bullet(float x, float y, string name = "Bullet", string path = "Images/bullet.png", Actor handler = null) : base(x, y, name, path)
+
+        public float Speed { get { return _speed; }  set { _speed = value; } }
+        public Bullet(float x, float y, float speed, string name = "Bullet", string path = "Images/bullet.png", Actor handler = null) : base(x, y, name, path)
         {
             _handler = handler;
+            _speed = speed;
         }
 
         public override void Start()
         {
             base.Start();
+
+            if (Handler != null)
+                Forward = Handler.Forward;
+            
+
             SetScale(20, 20);
             CircleCollider circleCollider = new CircleCollider(20,this);
             Collider = circleCollider;
@@ -25,13 +37,16 @@ namespace Sick_Ship
 
         public override void Update(float deltaTime)
         {
+            
+            LocalPosition += Forward.Normalzed * Speed * deltaTime;
             base.Update(deltaTime);
-            if(Handler != null)
+
+            if(_lifeSpan >= 2f)
             {
-                Forward = Handler.Forward;
-            }
-             
-            WorldPosition += Forward * 10 * deltaTime;
+                
+                _lifeSpan = 0;
+            }    
+           _lifeSpan += deltaTime; 
         }
 
         public override void Draw()

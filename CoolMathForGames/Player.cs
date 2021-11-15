@@ -10,6 +10,7 @@ namespace Sick_Ship
     {
         private static float _speed;
         private Vector2 _volocity;
+        private float _coolDown;
         private int _lives;
         
         public static float Speed { get { return _speed; } set { _speed = value; } }
@@ -30,6 +31,7 @@ namespace Sick_Ship
             SetScale(100, 50);
             AABBCollider playerBoxCollider = new AABBCollider(50, 50, this);
             Collider = playerBoxCollider;
+            _coolDown = 0;
         }
 
         /// <summary>
@@ -38,8 +40,15 @@ namespace Sick_Ship
         /// <param name="deltaTime"></param>
         public override void Update(float deltaTime)
         {
-            if (Raylib.IsKeyDown(KeyboardKey.KEY_SPACE))  
-                 ShootAShot();
+
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_SPACE) && _coolDown > .5f)
+            {
+                ShootAShot();
+                _coolDown = 0;
+            }
+            _coolDown += deltaTime;
+
+
 
 
             //Check if a particular input has been press
@@ -67,6 +76,7 @@ namespace Sick_Ship
         {
             if (actor.Name == "Bullet")
                 Console.WriteLine("Player Collided With Bullet");
+            if(actor.Name)
         }
 
         /// <summary>
@@ -89,9 +99,7 @@ namespace Sick_Ship
 
             int chance = rng.Next(1, 5);
 
-            Bullet shot = new Bullet(GlobalTransform.M02, GlobalTransform.M12, "PlayerBullet");
-            CircleCollider circleCollider = new CircleCollider(20, shot);
-            shot.Collider = circleCollider;
+              Bullet shot = new Bullet(GlobalTransform.M02, GlobalTransform.M12, (Speed * 2), "PlayerBullet","Images/bullet.png", this);
 
             SceneManager.AddActor(shot);
         }

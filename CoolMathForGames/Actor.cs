@@ -129,6 +129,8 @@ namespace Sick_Ship
             this (new Vector2 { X = x, Y = y }, name, path)
         { }
 
+        public Actor() { }
+
         public virtual void Start()
         {
             _started = true;
@@ -228,8 +230,9 @@ namespace Sick_Ship
         /// <returns></returns>
         public virtual bool CheckForCollision(Actor other)
         {
-            if (Collider == null || other.Collider == null)
-                return false;
+            if(other != null)
+                if (Collider == null || other.Collider == null)
+                    return false;
 
             return Collider.CheckCollision(other);
         }

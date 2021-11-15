@@ -12,13 +12,6 @@ namespace Sick_Ship
 
         public static int EnemyCounter { get { return _enemyCounter; } set { _enemyCounter = value; } }
 
-        public static Player Player
-        {
-            get { return new Player(200, 800, 500, "Player", "Images/player.png"); }
-            set
-            {
-                _player = value;
-            }
-        }
+        public static Player Player { get { return _player; } set { _player = value; } }
     }
 }
