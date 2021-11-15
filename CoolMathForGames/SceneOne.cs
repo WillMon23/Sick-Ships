@@ -24,9 +24,9 @@ namespace Sick_Ship
 
             Upgrades scaler = new Upgrades(700, 700, "Scaler", "Images/Upgrades/Adaption.png");
 
-            Bullet bullet = new Bullet(700, 300);
+            Spawner EnemySpawner = new Spawner(5);
 
-            //EnemySpawner();
+
 
             sun.AddChild(earth);
             earth.AddChild(moon);
@@ -35,10 +35,10 @@ namespace Sick_Ship
             AddActor(earth);
             AddActor(moon);
 
-            AddActor(bullet);
+            AddActor(EnemySpawner);
 
 
-            AddActor(SceneManager.Player);
+            AddActor(GameManager.Player);
 
             AddActor(scaler);
         }

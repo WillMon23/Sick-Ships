@@ -12,20 +12,6 @@ namespace Sick_Ship
         private static int _currentSceneIndex;
         private static bool _applicationShouldClose;
 
-
-        public static Scene _thisSceen = new Scene();
-        public static int _enemyCounter;
-        
-        private int _currentAmountOfEnemies;
-
-        private static Player _player;
-        private Enemy[] _enemys;
-
-        public static int EnemyCounter { get { return _enemyCounter; }  set { _enemyCounter = value; } }
-
-        public static Player Player { get { return new Player(200, 800, 500, "Player", "Images/player.png"); } set { _player = value; } } 
-
-
         public void Start()
         {
            
@@ -71,6 +57,7 @@ namespace Sick_Ship
             _scenes[_currentSceneIndex].Draw();
 
             Raylib.EndDrawing();
+
         }
 
         public void End()
@@ -124,23 +111,7 @@ namespace Sick_Ship
 
         public static void AddActor(Actor actor)
         {
-            _thisSceen.AddActor(actor);
-        }
-
-        /// <summary>
-        /// Creats enemy to spwan based on what scene 
-        /// </summary>
-        private void EnemySpawner()
-        {
-            int enemyCounter = 0;
-            _enemys = new Enemy[(_currentSceneIndex + 1) * 5];
-            for(int i = 0; i < _enemys.Length; i++)
-            {
-                Enemy enemy = new Enemy(1500, (220 * i), 25 * (i + 1), _player, "Enemy_" + (i + 1), "Images/enemy.png");
-                AddActor(enemy);
-                enemyCounter++;
-            }
-            
+            _scenes[_currentSceneIndex].AddActor(actor);
         }
     }
 }

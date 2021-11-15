@@ -25,7 +25,7 @@ namespace Sick_Ship
             AddActor(earth);
             AddActor(moon);
 
-            AddActor(SceneManager.Player);
+            AddActor(GameManager.Player);
 
         }
     }

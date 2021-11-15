@@ -36,8 +36,8 @@ namespace Sick_Ship
         /// <param name="y">y cooridinet position</param>
         /// <param name="name"> classification</param>
         /// <param name="color">There Color</param>
-        public Enemy(float x, float y, float speed,Actor target, string name,  string path = "") : base( x, y, name, path)
-        {
+        public Enemy(float x, float y, float speed,  string name, Actor target = null, string path = "Images/enemy.png") : base( x, y, name, path)
+        { 
             _speed = speed;
             _target = target;
         }
@@ -46,7 +46,7 @@ namespace Sick_Ship
         {
             base.Start();
 
-            SceneManager.EnemyCounter++;
+            GameManager.EnemyCounter++;
 
             _tally = 0;
             Volocity = new Vector2 { X = 2, Y = 2 };
@@ -116,7 +116,7 @@ namespace Sick_Ship
         public override void End()
         {
             base.End();
-            SceneManager.EnemyCounter--;
+            GameManager.EnemyCounter--;
         }
 
 
