@@ -76,7 +76,12 @@ namespace Sick_Ship
         {
             if (actor.Name == "Bullet")
                 Console.WriteLine("Player Collided With Bullet");
-            if(actor.Name)
+            if (actor.Name == "Scaler")
+            {
+                SetScale(200, 100);
+                //SceneManager.RemoverActor(actor);
+            }
+
         }
 
         /// <summary>

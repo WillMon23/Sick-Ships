@@ -24,8 +24,7 @@ namespace Sick_Ship
         public override void Start()
         {
             base.Start();
-            CircleCollider circleCollider = new CircleCollider(20, this);
-            Collider = circleCollider;
+            
             SetScale(50, 50);
         }
 
@@ -41,8 +40,7 @@ namespace Sick_Ship
 
         public override void OnCollision(Actor actor)
         {
-            if (Name == "Player")
-                SceneManager.RemoverActor(this);
+           
         }
 
         public override void Draw()
