@@ -13,7 +13,7 @@ namespace Sick_Ship
     {
         Stopwatch _stopwatch = new Stopwatch();
 
-        SceneManager _gameHandler = new SceneManager();
+        SceneManager _sceneManager = new SceneManager();
 
         /// <summary>
         /// Called to begin the application 
@@ -52,8 +52,12 @@ namespace Sick_Ship
         /// </summary>
         private void Start()
         {
+            //Creats a window  using raylib
+            Raylib.InitWindow(1600, 900, "Math For Games");
+            Raylib.SetTargetFPS(0);
+
             _stopwatch.Start();
-            _gameHandler.Start();
+            _sceneManager.Start();
 
         }
 
@@ -62,7 +66,7 @@ namespace Sick_Ship
         /// </summary>
         private void Draw()
         {
-            _gameHandler.Draw();
+            _sceneManager.Draw();
         }
 
         /// <summary>
@@ -70,7 +74,7 @@ namespace Sick_Ship
         /// </summary>
         private void Update(float deltaTime)
         {
-            _gameHandler.Update(deltaTime);
+            _sceneManager.Update(deltaTime);
         }
 
         /// <summary>
@@ -78,7 +82,7 @@ namespace Sick_Ship
         /// </summary>
         private void End()
         {
-            _gameHandler.End();
+            _sceneManager.End();
         }
     }
 

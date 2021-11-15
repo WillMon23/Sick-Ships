@@ -7,9 +7,12 @@ namespace Sick_Ship
 {
     class Bullet : Actor
     {
-        public Bullet(float x, float y, string name = "Bullet", string path = "Images/bullet.png") : base(x, y, name, path)
-        {
+        Actor _handler;
 
+        public Actor Handler { get { return _handler; } set { _handler = value; } } 
+        public Bullet(float x, float y, string name = "Bullet", string path = "Images/bullet.png", Actor handler = null) : base(x, y, name, path)
+        {
+            _handler = handler;
         }
 
         public override void Start()
@@ -23,6 +26,11 @@ namespace Sick_Ship
         public override void Update(float deltaTime)
         {
             base.Update(deltaTime);
+            if(Handler != null)
+            {
+                Forward = Handler.Forward;
+            }
+             
             WorldPosition += Forward * 10 * deltaTime;
         }
 

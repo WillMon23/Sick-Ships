@@ -17,6 +17,11 @@ namespace MathLibrary
             M20 = m20; M21 = m21; M22 = m22; 
         }
 
+        /// <summary>
+        /// Setting an identaty to the matrixies
+        /// compasenting for strucks not having a
+        /// contructor
+        /// </summary>
         public static Matrix3 Identity
         {
             get
@@ -79,7 +84,14 @@ namespace MathLibrary
                     0, 0, 1
                 );
         }
-    
+        
+        /// <summary>
+        /// Override the addition function in oder to 
+        /// Adds Matrixies together
+        /// </summary>
+        /// <param name="lhs">left hand side </param>
+        /// <param name="rhs">right hand side </param>
+        /// <returns></returns>
         public static Matrix3 operator +(Matrix3 lhs, Matrix3 rhs)
         {
             Matrix3 temp = new Matrix3();

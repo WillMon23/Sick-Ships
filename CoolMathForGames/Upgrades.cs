@@ -32,7 +32,7 @@ namespace Sick_Ship
         public override void Update(float deltaTime)
         {
             
-            WorldPosition += new Vector2(1, 0) * 10 * deltaTime;
+            LocalPosition += new Vector2(1, 0) * 10 * deltaTime;
             Rotate(deltaTime);
             base.Update(deltaTime);
 
@@ -44,5 +44,7 @@ namespace Sick_Ship
             if (Name == "Player")
                 SceneManager.RemoverActor(this);
         }
+
+
     }
 }

@@ -27,7 +27,9 @@ namespace Sick_Ship
         public override void Start()
         {
             base.Start();
-            SetScale(50, 50);
+            SetScale(100, 50);
+            AABBCollider playerBoxCollider = new AABBCollider(50, 50, this);
+            Collider = playerBoxCollider;
         }
 
         /// <summary>
@@ -56,7 +58,7 @@ namespace Sick_Ship
             if (Volocity.Magnitude > 0)
                 Forward = Volocity.Normalzed;
 
-            WorldPosition += Volocity;
+            LocalPosition += Volocity;
             
             base.Update(deltaTime);
         }

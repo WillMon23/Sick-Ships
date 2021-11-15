@@ -12,32 +12,42 @@ namespace Sick_Ship
         private static int _currentSceneIndex;
         private static bool _applicationShouldClose;
 
-        private int _currentAmountOfEnemies;
 
         public static Scene _thisSceen = new Scene();
+        public static int _enemyCounter;
+        
+        private int _currentAmountOfEnemies;
 
-        private Player _player;
+        private static Player _player;
         private Enemy[] _enemys;
+
+        public static int EnemyCounter { get { return _enemyCounter; }  set { _enemyCounter = value; } }
+
+        public static Player Player { get { return new Player(200, 800, 500, "Player", "Images/player.png"); } set { _player = value; } } 
 
 
         public void Start()
         {
-            //Creats a window  using raylib
-            Raylib.InitWindow(1600, 900, "Math For Games");
+           
 
-            Raylib.SetTargetFPS(0);
+            _currentSceneIndex = AddScene(new SceneOne());
 
-            SceneOne();
+            
 
-            SceneTwo();
+            _scenes[_currentSceneIndex].Start();
+            
         }
 
         public void Update(float deltaTime)
         {
-            
-            if((_currentSceneIndex < _scenes.Length))
+
+            if ((_currentSceneIndex < _scenes.Length))
                 if (Raylib.IsKeyDown(KeyboardKey.KEY_Q))
-                    _currentSceneIndex++;
+                {
+                    _scenes[_currentSceneIndex].End();
+                    _currentSceneIndex = AddScene(new SceneTwo());
+                    _scenes[_currentSceneIndex].Start();
+                }
 
             _scenes[_currentSceneIndex].Update(deltaTime);
 
@@ -68,98 +78,13 @@ namespace Sick_Ship
 
         }
 
-        /// <summary>
-        /// Starting Initalization of my first Scenes Oporations 
-        /// </summary>
-        private void SceneOne()
-        {
-            //Initulises the characters 
-
-            _thisSceen = new Scene();
-
-            //Lead Protaganise 
-            _player = new Player(200, 800, 500, "Player", "Images/player.png");
-
-            CircleCollider playerCollider = new CircleCollider(20, _player);
-            AABBCollider playerBoxCollider = new AABBCollider(50, 50, _player);
-            _player.Collider = playerBoxCollider;
-
-            //EnemySpawner();
-
-            //Creats thr actors starting position
-            Planet sun = new Planet(800, 450, "Sun", "Images/Planets/sun.png");
-            sun.SetScale(200, 200);
-
-            Planet earth = new Planet(.7f, .7f, "Earth", "Images/Planets/earth.png");
-            earth.SetScale(0.3f, 0.3f);
-
-            Planet moon = new Planet(1f, 1f, "Moon", "Images/Planets/moon.png");
-            moon.SetScale(0.3f, 0.3f);
-
-            Upgrades scaler = new Upgrades(700, 700, "Scaler", "Images/Upgrades/Adaption.png");
-
-            Bullet bullet = new Bullet(700,300);
-
-            sun.AddChild(earth);
-            earth.AddChild(moon);
-
-            //_thisSceen.AddActor(sun);
-            //_thisSceen.AddActor(earth);
-            //_thisSceen.AddActor(moon);
-
-            _thisSceen.AddActor(bullet);
-            
-
-            _thisSceen.AddActor(_player);
-            
-            _thisSceen.AddActor(scaler);
-
-            AddScene(_thisSceen);
-
-        }
-
-        /// <summary>
-        /// Starting Inittalization of my second Scene Oporations 
-        /// </summary>
-        private void SceneTwo()
-        {
-            _thisSceen = new Scene();
-
-            //Lead Protaganise 
-            _player = new Player(200, 800, 500, "Player", "Images/player.png");
-
-            CircleCollider playerCollider = new CircleCollider(20, _player);
-            AABBCollider playerBoxCollider = new AABBCollider(50, 50, _player);
-            _player.Collider = playerBoxCollider;
-
-            EnemySpawner();
-
-            //Creats thr actors starting position
-            Planet sun = new Planet(800, 450, "Sun", "Images/Planets/sun.png");
-            sun.SetScale(200, 200);
-
-            Planet earth = new Planet(.7f, .7f, "Earth", "Images/Planets/earth.png");
-            earth.SetScale(0.3f, 0.3f);
-
-            Planet moon = new Planet(1f, 1f, "Moon", "Images/Planets/moon.png");
-            moon.SetScale(0.3f, 0.3f);
-
-            _thisSceen.AddActor(sun);
-            _thisSceen.AddActor(earth);
-            _thisSceen.AddActor(moon);
-
-            _thisSceen.AddActor(_player);
-
-            AddScene(_thisSceen);
-        }
-
 
         /// <summary>
         /// Created to append new scnene to the current listing of scene 
         /// </summary>
         /// <param name="scene">Scene being added to the current list of scens</param>
         /// <returns>returns the new ammount of scenes</returns>
-        public int AddScene(Scene scene)
+        public static int AddScene(Scene scene)
         {
             // Creats a Temporary array 
             Scene[] tempArray = new Scene[_scenes.Length + 1];
@@ -205,7 +130,7 @@ namespace Sick_Ship
         /// <summary>
         /// Creats enemy to spwan based on what scene 
         /// </summary>
-        private int EnemySpawner()
+        private void EnemySpawner()
         {
             int enemyCounter = 0;
             _enemys = new Enemy[(_currentSceneIndex + 1) * 5];
@@ -215,7 +140,7 @@ namespace Sick_Ship
                 AddActor(enemy);
                 enemyCounter++;
             }
-            return enemyCounter;
+            
         }
     }
 }

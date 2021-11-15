@@ -46,6 +46,8 @@ namespace Sick_Ship
         {
             base.Start();
 
+            SceneManager.EnemyCounter++;
+
             _tally = 0;
             Volocity = new Vector2 { X = 2, Y = 2 };
             SetScale(50, 50);
@@ -109,6 +111,12 @@ namespace Sick_Ship
         {
             base.Draw();
             Collider.Draw();
+        }
+
+        public override void End()
+        {
+            base.End();
+            SceneManager.EnemyCounter--;
         }
 
 

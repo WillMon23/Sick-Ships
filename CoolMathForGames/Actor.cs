@@ -43,7 +43,7 @@ namespace Sick_Ship
         /// Postion based on the local postion of the actor in conjuction
         /// if they have a parent or not
         /// </summary>
-        public Vector2 LocalPosition { get { return new Vector2(LocalTransform.M02, LocalTransform.M12); } 
+        public Vector2 LocalPosition { get { return new Vector2(_translation.M02, _translation.M12); } 
                                        set { SetTranslation(value.X, value.Y); } }
 
         public Vector2 WorldPosition
@@ -126,7 +126,7 @@ namespace Sick_Ship
         /// <param name="name"></param>
         /// <param name="path"></param>
         public Actor(float x, float y, string name = "Actor", string path = "") :
-            this(new Vector2 { X = x, Y = y }, name, path)
+            this (new Vector2 { X = x, Y = y }, name, path)
         { }
 
         public virtual void Start()
