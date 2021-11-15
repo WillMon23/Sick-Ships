@@ -98,7 +98,7 @@ namespace Sick_Ship
 
             Upgrades scaler = new Upgrades(700, 700, "Scaler", "Images/Upgrades/Adaption.png");
 
-            Bullet bullet = new Bullet(new MathLibrary.Vector2(700,300) , 20, _player, "Bullet", "Images/bullet.png");
+            Bullet bullet = new Bullet(700,300);
 
             sun.AddChild(earth);
             earth.AddChild(moon);

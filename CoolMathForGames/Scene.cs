@@ -7,9 +7,9 @@ namespace Sick_Ship
     class Scene
     {
         /// <summary>
-        /// Array thst contsind all the scenes 
+        /// Array thst contsind all the actors in the scenes 
         /// </summary>
-        public Actor[] _actors;
+        private Actor[] _actors;
 
         public Actor[] Actors { get { return _actors; } private set { _actors = value; } }
 

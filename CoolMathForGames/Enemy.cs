@@ -68,7 +68,7 @@ namespace Sick_Ship
                 if (GetTargetInSight())
                 {
                     WorldPosition += Volocity.Normalzed * (Speed * 2) * deltaTime;
-                    Bullet shot = new Bullet(WorldPosition, 20f, this);
+                    Bullet shot = new Bullet(WorldPosition.X, WorldPosition.Y);
                 }
             }
             else

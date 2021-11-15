@@ -87,8 +87,7 @@ namespace Sick_Ship
 
             int chance = rng.Next(1, 5);
 
-            Bullet shot = new Bullet(new Vector2(WorldPosition.X, WorldPosition.Y), 10f, this, "PlayerBullet");
-            shot.SetScale(50, 50);
+            Bullet shot = new Bullet(GlobalTransform.M02, GlobalTransform.M12, "PlayerBullet");
 
             SceneManager.AddActor(shot);
         }
