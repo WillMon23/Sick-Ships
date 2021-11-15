@@ -84,7 +84,7 @@ namespace Sick_Ship
             AABBCollider playerBoxCollider = new AABBCollider(50, 50, _player);
             _player.Collider = playerBoxCollider;
 
-            EnemySpawner();
+            //EnemySpawner();
 
             //Creats thr actors starting position
             Planet sun = new Planet(800, 450, "Sun", "Images/Planets/sun.png");
@@ -103,9 +103,9 @@ namespace Sick_Ship
             sun.AddChild(earth);
             earth.AddChild(moon);
 
-            _thisSceen.AddActor(sun);
-            _thisSceen.AddActor(earth);
-            _thisSceen.AddActor(moon);
+            //_thisSceen.AddActor(sun);
+            //_thisSceen.AddActor(earth);
+            //_thisSceen.AddActor(moon);
 
             _thisSceen.AddActor(bullet);
             

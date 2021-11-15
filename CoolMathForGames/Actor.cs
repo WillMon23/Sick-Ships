@@ -35,7 +35,7 @@ namespace Sick_Ship
         /// </summary>
         public Vector2 Forward { get { return new Vector2(_rotation.M00, _rotation.M10); } 
                                  set {
-                                        Vector2 point = value.Normalzed + LocalPosition;
+                                        Vector2 point = value.Normalzed + WorldPosition;
                                         LookAt(point);
                                      } }
 
