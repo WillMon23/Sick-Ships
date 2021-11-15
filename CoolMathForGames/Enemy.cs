@@ -69,6 +69,9 @@ namespace Sick_Ship
                 {
                     WorldPosition += Volocity.Normalzed * (Speed * 2) * deltaTime;
                     Bullet shot = new Bullet(WorldPosition.X, WorldPosition.Y);
+                    CircleCollider circleCollider = new CircleCollider(20, shot);
+                    shot.Collider = circleCollider;
+                    SceneManager.AddActor(shot);
                 }
             }
             else

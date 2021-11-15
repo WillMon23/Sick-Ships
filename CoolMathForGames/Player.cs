@@ -88,6 +88,8 @@ namespace Sick_Ship
             int chance = rng.Next(1, 5);
 
             Bullet shot = new Bullet(GlobalTransform.M02, GlobalTransform.M12, "PlayerBullet");
+            CircleCollider circleCollider = new CircleCollider(20, shot);
+            shot.Collider = circleCollider;
 
             SceneManager.AddActor(shot);
         }
