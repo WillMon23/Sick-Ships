@@ -6,12 +6,24 @@ using Raylib_cs;
 
 namespace Sick_Ship
 {
+ 
     class Player : Actor
     {
+        public enum Phase
+        {
+            DEADPHASE,
+            FIRSTPHASE,
+            SECONDPHASE,
+            THIRDPHASE
+
+        }
+
         private static float _speed;
         private Vector2 _volocity;
         private float _coolDown;
         private int _lives;
+        Phase _phase = Phase.FIRSTPHASE;
+
         
         public static float Speed { get { return _speed; } set { _speed = value; } }
 

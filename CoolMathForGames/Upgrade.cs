@@ -5,7 +5,7 @@ using MathLibrary;
 
 namespace Sick_Ship
 {
-    class Upgrades : Actor
+    class Upgrade : Actor
     {
         private Enum _upgradeType;
 
@@ -17,21 +17,22 @@ namespace Sick_Ship
         /// <param name="y">y axes location</param>
         /// <param name="name">Name of upgrade</param>
         /// <param name="path">image png location</param>
-        public Upgrades(float x, float y, string name, string path) : base(x, y, name, path)
+        public Upgrade(float x, float y, string name, string path) : base(x, y, name, path)
         {
         }
 
         public override void Start()
         {
             base.Start();
-            
+            CircleCollider circleCollider = new CircleCollider(20, this);
+            Collider = circleCollider;
             SetScale(50, 50);
         }
 
         public override void Update(float deltaTime)
         {
             
-            LocalPosition += new Vector2(1, 0) * 10 * deltaTime;
+            LocalPosition += new Vector2(-1, 0) * 5 * deltaTime;
             Rotate(deltaTime);
             base.Update(deltaTime);
 

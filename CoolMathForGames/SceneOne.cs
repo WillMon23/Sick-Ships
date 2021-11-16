@@ -25,12 +25,19 @@ namespace Sick_Ship
             moon.SetScale(0.3f, 0.3f);
             AddActor(moon);
 
-            Upgrades scaler = new Upgrades(700, 700, "Scaler", "Images/Upgrades/Adaption.png");
-            CircleCollider circleCollider = new CircleCollider(20, scaler);
-            scaler.Collider = circleCollider;
+            Upgrade scaler = new Upgrade(700, 700, "Scaler", "Images/Upgrades/ScaleUp.png");
+
+            Upgrade adaption = new Upgrade(300, 300, "Aption", "Images/Upgrades/Adaption.png");
+
+            UpgradeSpawner upgradeSpawner = new UpgradeSpawner(100, scaler, adaption);
+            AddActor(scaler);
+            AddActor(adaption);
+            
 
             Spawner EnemySpawner = new Spawner(5);
             AddActor(EnemySpawner);
+            
+            
 
 
             sun.AddChild(earth);
@@ -38,10 +45,10 @@ namespace Sick_Ship
             
             
 
-            GameManager.Player = new Player(200, 400, 500, "Player", "Images/player.png");
+            GameManager.Player = new Player(200, 400, 500, "Player", "Images/Rocket.png");
             AddActor(GameManager.Player);
 
-            AddActor(scaler);
+            
 
 
         }
