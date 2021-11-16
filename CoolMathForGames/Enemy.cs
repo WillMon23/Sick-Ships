@@ -19,15 +19,13 @@ namespace Sick_Ship
 
         private float _lineOfSightRange = 200f;
 
-        private bool _alive = true;
-
         int _tally;
 
         public float Speed { get { return _speed; } set { _speed = value; } }
 
         public Vector2 Volocity { get { return _volocity; } set { _volocity = value; } }
 
-        public bool Alive { get { return _alive; } }
+       
 
         /// <summary>
         /// Enemy Contructor 
@@ -78,9 +76,9 @@ namespace Sick_Ship
             else
                 LocalPosition += Volocity.Normalzed * Speed * deltaTime;
 
-            if (_coolDown >= 2f)
+            if (_coolDown >= 3f)
             {
-                Bullet shot = new Bullet(LocalPosition.X, LocalPosition.Y, Speed * 2, "EnemyBullet", "Images/bullet.png", this);
+                Bullet shot = new Bullet(LocalPosition.X, LocalPosition.Y, Speed * 5, "EnemyBullet", "Images/bullet.png", this);
                 SceneManager.AddActor(shot);
                 _coolDown = 0;
             }
@@ -93,7 +91,7 @@ namespace Sick_Ship
         {
             if (actor.Name == "PlayerBullet")
             {
-                SceneManager.RemoverActor(actor);
+                Alive = false;
             }
         }
 

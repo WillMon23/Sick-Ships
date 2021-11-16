@@ -41,9 +41,9 @@ namespace Sick_Ship
             LocalPosition += Forward.Normalzed * Speed * deltaTime;
             base.Update(deltaTime);
 
-            if(_lifeSpan >= 2f)
+            if(_lifeSpan >= 10f)
             {
-                
+                SceneManager.RemoverActor(this);
                 _lifeSpan = 0;
             }    
            _lifeSpan += deltaTime; 
@@ -53,6 +53,16 @@ namespace Sick_Ship
         {
             base.Draw();
             Collider.Draw();
+        }
+
+        public override void OnCollision(Actor actor)
+        {
+            if (actor.Name == "PlayerBullet")
+            {
+                SceneManager.RemoverActor(this);
+                SceneManager.RemoverActor(actor);
+                
+            }
         }
     }
 }

@@ -20,6 +20,11 @@ namespace Sick_Ship
         private Actor _parent = null;
         private Sprite _sprite;
 
+
+        private bool _alive = true;
+
+        public bool Alive { get { return _alive; } set { _alive = value; } }
+
         /// <summary>
         /// True if the start function has been called for this actor
         /// </summary>

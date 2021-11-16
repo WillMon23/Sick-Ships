@@ -6,10 +6,7 @@ namespace Sick_Ship
 {
     class Spawner : Actor
     {
-        /// <summary>
-        /// Creats an instance of an enemy
-        /// </summary>
-        Enemy _enemy;
+  
 
         /// <summary>
         /// Amount going to me replacated 
@@ -44,15 +41,18 @@ namespace Sick_Ship
 
         public override void Update(float deltaTime)
         {
+            Enemy _enemy; 
 
             Random rng = new Random();
             
 
             if (_coolDown >= .5f)
             {
-                if(_counter < TotalSpawning)
-                    _enemy = new Enemy(1500, 100 * rng.Next(0,9), 35, "Enemy_" + _counter);
-                SceneManager.AddActor(_enemy);
+                if (_counter < TotalSpawning)
+                {
+                    _enemy = new Enemy(1500, 100 * rng.Next(0, 9), 35, "Enemy");
+                    SceneManager.AddActor(_enemy);
+                }
                 _coolDown = 0;
                 _counter++;
             }

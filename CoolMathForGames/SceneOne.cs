@@ -45,5 +45,22 @@ namespace Sick_Ship
 
 
         }
+
+        public override void Update(float deltaTime)
+        {
+            
+
+            for (int i = 0; i < Actors.Length; i++)
+            {
+                    if (!Actors[i].Alive)
+                    {
+                        SceneManager.RemoverActor(Actors[i]);
+                        Actors[i].End();
+                    }
+                        
+                   
+            }
+            base.Update(deltaTime);
+        }
     }
 }

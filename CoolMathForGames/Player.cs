@@ -28,8 +28,8 @@ namespace Sick_Ship
         public override void Start()
         {
             base.Start();
-            SetScale(100, 50);
-            AABBCollider playerBoxCollider = new AABBCollider(50, 50, this);
+            SetScale(100, 100);
+            AABBCollider playerBoxCollider = new AABBCollider(100, 100, this);
             Collider = playerBoxCollider;
             _coolDown = 0;
         }
@@ -78,8 +78,8 @@ namespace Sick_Ship
                 Console.WriteLine("Player Collided With Bullet");
             if (actor.Name == "Scaler")
             {
-                SetScale(200, 100);
-                //SceneManager.RemoverActor(actor);
+                SetScale(200, 200);
+                SceneManager.RemoverActor(actor);
             }
 
         }

@@ -40,7 +40,8 @@ namespace Sick_Ship
 
         public override void OnCollision(Actor actor)
         {
-           
+            if (actor.Name == "Player")
+                SceneManager.RemoverActor(this);
         }
 
         public override void Draw()
