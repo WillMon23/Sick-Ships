@@ -49,7 +49,8 @@ namespace Sick_Ship
         }
 
         /// <summary>
-        /// Creatas a space 
+        /// Creatas a space based on the width and height 
+        /// to check for collision 
         /// </summary>
         /// <param name="other">WHose being collided with</param>
         /// <returns>In case there is a collision with the other </returns>

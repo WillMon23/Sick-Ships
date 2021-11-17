@@ -10,6 +10,8 @@ namespace Sick_Ship
         {
             base.Start();
 
+            GameManager.EnemyCounter = 0;
+
             GameManager.Player = new Player(200, 400, 500, "Player", "Images/Rocket.png");
 
             //Creats thr actors starting position

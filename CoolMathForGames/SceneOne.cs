@@ -10,6 +10,7 @@ namespace Sick_Ship
         {
             base.Start();
 
+            GameManager.EnemyCounter = 0;
 
             EnemySpawner EnemySpawner = new EnemySpawner(5);
             AddActor(EnemySpawner);
