@@ -6,12 +6,13 @@ namespace Sick_Ship
 {
     class SceneOne : Scene
     { 
-        private float _timer = 0;
-
         public override void Start()
         {
             base.Start();
 
+
+            EnemySpawner EnemySpawner = new EnemySpawner(5);
+            AddActor(EnemySpawner);
 
             //Creats thr actors starting position
             Planet sun = new Planet(800, 450, "Sun", "Images/Planets/sun.png");
@@ -29,11 +30,6 @@ namespace Sick_Ship
             UpgradeSpawner upgradeSpawner = new UpgradeSpawner();
             AddActor(upgradeSpawner);
 
-            Spawner EnemySpawner = new Spawner(5);
-            
-            
-            
-
 
             sun.AddChild(earth);
             earth.AddChild(moon);
@@ -42,9 +38,6 @@ namespace Sick_Ship
 
             GameManager.Player = new Player(200, 400, 500, "Player", "Images/Rocket.png");
             AddActor(GameManager.Player);
-
-            AddActor(EnemySpawner);
-
         }
     }
 }

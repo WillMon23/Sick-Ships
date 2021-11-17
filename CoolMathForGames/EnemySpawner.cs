@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Sick_Ship
 {
-    class Spawner : Actor
+    class EnemySpawner : Actor
     {
   
 
@@ -33,11 +33,32 @@ namespace Sick_Ship
         public int TotalSpawning { get { return _totalSpawning; } set { _totalSpawning = value; } }
 
         public Actor Coping { get { return _coping; } private set { _coping = value; } }
-        public Spawner(int totalSpawning) : base(0, 0, "Spawner","")
+        public EnemySpawner(int totalSpawning) : base(0, 0, "Spawner","")
         {
             _totalSpawning = totalSpawning;
         }
 
+        public override void Start()
+        {
+
+            Random rng = new Random();
+            base.Start();
+
+            Enemy enemy1 = new Enemy(1300, 100 * rng.Next(-1 , 10), 50, "Enemy");
+            SceneManager.AddActor(enemy1);
+
+            Enemy enemy2 = new Enemy(1300, 100 * rng.Next(-1, 10), 50, "Enemy");
+            SceneManager.AddActor(enemy2);
+
+            Enemy enemy3 = new Enemy(1300, 100 * rng.Next(-1, 10), 50, "Enemy");
+            SceneManager.AddActor(enemy3);
+
+            Enemy enemy4 = new Enemy(1300, 100 * rng.Next(-1, 10), 50, "Enemy");
+            SceneManager.AddActor(enemy4);
+
+            Enemy enemy5 = new Enemy(1300, 100 * rng.Next(-1, 10), 50, "Enemy");
+            SceneManager.AddActor(enemy5);
+        }
 
         public override void Update(float deltaTime)
         {

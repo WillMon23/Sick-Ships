@@ -17,7 +17,7 @@ namespace Sick_Ship
 
         private float _coolDown;
 
-        private float _lineOfSightRange = 200f;
+        private float _lineOfSightRange = 900f;
 
         int _tally;
 
@@ -44,10 +44,11 @@ namespace Sick_Ship
 
         public override void Start()
         {
+            GameManager.EnemyCounter++;
+
             base.Start();
 
-            GameManager.EnemyCounter++;
-            Forward = new Vector2(-1, 0);
+            Forward = new Vector2( -1 , 0);
             _tally = 0;
             Volocity = new Vector2 { X = 2, Y = 2 };
             SetScale(50, 50);

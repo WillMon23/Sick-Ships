@@ -22,7 +22,7 @@ namespace Sick_Ship
             Planet moon = new Planet(1f, 1f, "Moon", "Images/Planets/moon.png");
             moon.SetScale(0.3f, 0.3f);
 
-            Spawner EnemySpawner = new Spawner(10);
+            EnemySpawner EnemySpawner = new EnemySpawner(10);
 
             UpgradeSpawner upgradeSpawner = new UpgradeSpawner();
             AddActor(upgradeSpawner);

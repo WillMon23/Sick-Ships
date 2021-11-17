@@ -14,32 +14,20 @@ namespace Sick_Ship
 
         public void Start()
         {
-           
-
-            _currentSceneIndex = AddScene(new SceneOne());
 
             
 
+            _currentSceneIndex = AddScene(new SceneOne());
             _scenes[_currentSceneIndex].Start();
             
         }
 
         public void Update(float deltaTime)
         {
-
-            if (Raylib.IsKeyDown(KeyboardKey.KEY_Q))
-            {
-
-                _currentSceneIndex = AddScene(new SceneTwo());
-                _scenes[_currentSceneIndex].Start();
-            }
-            if (Raylib.IsKeyDown(KeyboardKey.KEY_E))
-            {
-                _currentSceneIndex = AddScene(new SceneThree());
-                _scenes[_currentSceneIndex].Start();
-            }
+            SceneTransition();
 
             _scenes[_currentSceneIndex].Update(deltaTime);
+            
 
 
             while (Console.KeyAvailable)
@@ -120,6 +108,30 @@ namespace Sick_Ship
         public static void AddActor(Actor actor)
         {
             _scenes[_currentSceneIndex].AddActor(actor);
+        }
+
+        private void SceneTransition()
+        {
+
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_ONE))
+            {
+
+                _currentSceneIndex = AddScene(new SceneOne());
+                _scenes[_currentSceneIndex].Start();
+            }
+
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_TWO))
+            {
+
+                _currentSceneIndex = AddScene(new SceneTwo());
+                _scenes[_currentSceneIndex].Start();
+            }
+
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_THREE) )
+            {
+                _currentSceneIndex = AddScene(new SceneThree());
+                _scenes[_currentSceneIndex].Start();
+            }
         }
     }
 }

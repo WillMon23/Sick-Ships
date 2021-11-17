@@ -54,6 +54,8 @@ namespace Sick_Ship
 
             _scaledUp = false;
 
+            _lives = 1;
+
             _leftHandSide = new ShipUpgrade(.5f, -.5f);
             _rightHandSide = new ShipUpgrade(.5f, .5f);
         }
@@ -114,15 +116,19 @@ namespace Sick_Ship
                         RemoveChild(_rightHandSide);
                         SceneManager.RemoverActor(_rightHandSide);
                         _phase = Phase.SECONDPHASE;
+                        _lives--;
+
                     }
                     else if (_phase == Phase.SECONDPHASE)
                     {
                         RemoveChild(_leftHandSide);
                         SceneManager.RemoverActor(_leftHandSide);
                         _phase = Phase.FIRSTPHASE;
+                        _lives--;
                     }
                     else if (_phase == Phase.FIRSTPHASE && _scaledUp)
                         _phase = Phase.DEADPHASE;
+                    
                 }
             }
             if (actor.Name == "Scaler")
@@ -140,6 +146,7 @@ namespace Sick_Ship
                 SceneManager.RemoverActor(actor);
                 if (_phase == Phase.FIRSTPHASE)
                 {
+                    _lives++;
                     SceneManager.AddActor(_leftHandSide);
                     AddChild(_leftHandSide);
                     _phase = Phase.SECONDPHASE;
@@ -148,6 +155,7 @@ namespace Sick_Ship
                 {
                     SceneManager.AddActor(_rightHandSide);
                     AddChild(_rightHandSide);
+                    _lives++;
                     _phase = Phase.THIRDPHASE; 
                 }
                 
