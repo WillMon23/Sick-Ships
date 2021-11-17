@@ -113,21 +113,21 @@ namespace Sick_Ship
         private void SceneTransition()
         {
 
-            if (Raylib.IsKeyDown(KeyboardKey.KEY_ONE))
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_ONE) || GameManager.EnemyCounter <= -1)
             {
 
                 _currentSceneIndex = AddScene(new SceneOne());
                 _scenes[_currentSceneIndex].Start();
             }
 
-            if (Raylib.IsKeyDown(KeyboardKey.KEY_TWO))
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_TWO) || GameManager.EnemyCounter <= -1)
             {
 
                 _currentSceneIndex = AddScene(new SceneTwo());
                 _scenes[_currentSceneIndex].Start();
             }
 
-            if (Raylib.IsKeyDown(KeyboardKey.KEY_THREE) )
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_THREE) || GameManager.EnemyCounter <= -1)
             {
                 _currentSceneIndex = AddScene(new SceneThree());
                 _scenes[_currentSceneIndex].Start();

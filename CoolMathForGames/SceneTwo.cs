@@ -12,7 +12,7 @@ namespace Sick_Ship
 
             GameManager.EnemyCounter = 0;
 
-            GameManager.Player = new Player(200, 400, 500, "Player", "Images/Rocket.png");
+            //GameManager.Player = new Player(200, 400, 500, "Player", "Images/Rocket.png");
 
             //Creats thr actors starting position
             Planet sun = new Planet(800, 450, "Sun", "Images/Planets/sun.png");

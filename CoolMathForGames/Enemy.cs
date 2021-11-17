@@ -88,6 +88,12 @@ namespace Sick_Ship
             base.Update(deltaTime);
             
         }
+
+        /// <summary>
+        /// Handles what happens when an enemy 
+        /// collides with an instance
+        /// </summary>
+        /// <param name="actor">The collision check with</param>
         public override void OnCollision(Actor actor)
         {
             if (actor.Name == "PlayerBullet")

@@ -4,6 +4,9 @@ using System.Text;
 
 namespace Sick_Ship
 {
+    /// <summary>
+    /// MEant to be made once a player attacks 
+    /// </summary>
     class SceneThree : Scene
     {
         public override void Start()
