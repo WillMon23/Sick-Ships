@@ -27,16 +27,15 @@ namespace Sick_Ship
         public void Update(float deltaTime)
         {
 
-            if ((_currentSceneIndex < _scenes.Length))
-                if (Raylib.IsKeyDown(KeyboardKey.KEY_Q))
-                {
-                    
-                    _currentSceneIndex = AddScene(new SceneTwo());
-                    _scenes[_currentSceneIndex].Start();
-                }
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_Q))
+            {
+
+                _currentSceneIndex = AddScene(new SceneTwo());
+                _scenes[_currentSceneIndex].Start();
+            }
             if (Raylib.IsKeyDown(KeyboardKey.KEY_E))
             {
-                _currentSceneIndex = AddScene(new SceneOne());
+                _currentSceneIndex = AddScene(new SceneThree());
                 _scenes[_currentSceneIndex].Start();
             }
 

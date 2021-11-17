@@ -121,7 +121,6 @@ namespace Sick_Ship
 
         public override void End()
         {
-            base.End();
             GameManager.EnemyCounter--;
         }
 

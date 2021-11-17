@@ -26,7 +26,8 @@ namespace Sick_Ship
             moon.SetScale(0.3f, 0.3f);
             AddActor(moon);
 
-            
+            UpgradeSpawner upgradeSpawner = new UpgradeSpawner();
+            AddActor(upgradeSpawner);
 
             Spawner EnemySpawner = new Spawner(5);
             
@@ -45,39 +46,5 @@ namespace Sick_Ship
             AddActor(EnemySpawner);
 
         }
-
-        public override void Update(float deltaTime)
-        {
-            if (_timer >= 1f)
-            { 
-                SpawningUpgrades();
-                _timer = 0;
-            }
-            _timer += deltaTime;
-            base.Update(deltaTime);
-        }
-
-        /// <summary>
-        /// Handles Spawning for the possible upgrades
-        /// </summary>
-        private void SpawningUpgrades()
-        {
-            Random rng = new Random();
-
-            Upgrade upgrade;
-
-            if(rng.Next(0,3) == 1)
-                upgrade = new Upgrade(100 * rng.Next(6,16), 100 * rng.Next(3,9), "Scaler", "Images/Upgrades/ScaleUp.png");
-
-            else
-                upgrade = new Upgrade(100 * rng.Next(6, 16), 100 * rng.Next(3, 9), "Adaption", "Images/Upgrades/Adaption.png");
-
-            SceneManager.AddActor(upgrade);
-
-
-
-        } 
-
-
     }
 }

@@ -32,7 +32,7 @@ namespace Sick_Ship
         public override void Update(float deltaTime)
         {
             
-            LocalPosition += new Vector2(-1, 0) * 5 * deltaTime;
+            LocalPosition += new Vector2(-1, 0) * 20f * deltaTime;
             Rotate(deltaTime);
             base.Update(deltaTime);
 
