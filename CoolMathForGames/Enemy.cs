@@ -91,7 +91,9 @@ namespace Sick_Ship
         {
             if (actor.Name == "PlayerBullet")
             {
-                Alive = false;
+                SceneManager.RemoverActor(this);
+                SceneManager.RemoverActor(actor);
+
             }
         }
 

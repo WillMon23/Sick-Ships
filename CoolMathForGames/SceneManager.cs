@@ -108,10 +108,14 @@ namespace Sick_Ship
         /// Removes Actors from the scene 
         /// </summary>
         /// <param name="actor"></param>
-        public static void RemoverActor(Actor actor)
+        public static bool RemoverActor(Actor actor)
         {
-            _scenes[_currentSceneIndex].RemoveActor(actor);
-            actor.End();
+            if (_scenes[_currentSceneIndex].RemoveActor(actor))
+            {
+                actor.End();
+                return true;
+            }
+            return false;
         }
 
         public static void AddActor(Actor actor)

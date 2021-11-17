@@ -24,7 +24,7 @@ namespace Sick_Ship
             Spawner EnemySpawner = new Spawner(10);
 
             AddActor(sun);
-            AddActor(earth);
+            AddActor(earth); 
             AddActor(moon);
             sun.AddChild(earth);
             earth.AddChild(moon);

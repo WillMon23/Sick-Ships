@@ -12,7 +12,7 @@
     <None Remove="Images\Planets\moon.png" />
     <None Remove="Images\Planets\sun.png" />
     <None Remove="Images\Rocket.png" />
-    <None Remove="Images\Slocer.png" />
+    <None Remove="Images\Saucer.png" />
     <None Remove="Images\Upgrades\Adaption.png" />
     <None Remove="Images\Upgrades\ScaleUp.png" />
     <None Remove="player.png" />
@@ -40,7 +40,7 @@
     <Content Include="Images\Rocket.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Slocer.png">
+    <Content Include="Images\Saucer.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\Upgrades\Adaption.png">

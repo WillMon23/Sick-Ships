@@ -63,6 +63,10 @@ namespace Sick_Ship
                 SceneManager.RemoverActor(actor);
                 
             }
+
+            if (actor.Name == "Enemey")
+                SceneManager.RemoverActor(this);
+
         }
     }
 }

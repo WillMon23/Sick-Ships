@@ -110,6 +110,7 @@ namespace Sick_Ship
                 // If the actor does not equal to the actor we want 
                 if (Actors[i] != actor)
                 {
+                    
                     tempArray[j] = Actors[i];
                     j++;
                 }

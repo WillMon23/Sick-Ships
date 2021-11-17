@@ -6,6 +6,7 @@ namespace Sick_Ship
 {
     class SceneOne : Scene
     { 
+        private float _timer = 0;
 
         public override void Start()
         {
@@ -25,17 +26,10 @@ namespace Sick_Ship
             moon.SetScale(0.3f, 0.3f);
             AddActor(moon);
 
-            Upgrade scaler = new Upgrade(700, 700, "Scaler", "Images/Upgrades/ScaleUp.png");
-
-            Upgrade adaption = new Upgrade(300, 300, "Aption", "Images/Upgrades/Adaption.png");
-
-            UpgradeSpawner upgradeSpawner = new UpgradeSpawner(100, scaler, adaption);
-            AddActor(scaler);
-            AddActor(adaption);
             
 
             Spawner EnemySpawner = new Spawner(5);
-            AddActor(EnemySpawner);
+            
             
             
 
@@ -48,26 +42,42 @@ namespace Sick_Ship
             GameManager.Player = new Player(200, 400, 500, "Player", "Images/Rocket.png");
             AddActor(GameManager.Player);
 
-            
-
+            AddActor(EnemySpawner);
 
         }
 
         public override void Update(float deltaTime)
         {
-            
-
-            for (int i = 0; i < Actors.Length; i++)
-            {
-                    if (!Actors[i].Alive)
-                    {
-                        SceneManager.RemoverActor(Actors[i]);
-                        Actors[i].End();
-                    }
-                        
-                   
+            if (_timer >= 1f)
+            { 
+                SpawningUpgrades();
+                _timer = 0;
             }
+            _timer += deltaTime;
             base.Update(deltaTime);
         }
+
+        /// <summary>
+        /// Handles Spawning for the possible upgrades
+        /// </summary>
+        private void SpawningUpgrades()
+        {
+            Random rng = new Random();
+
+            Upgrade upgrade;
+
+            if(rng.Next(0,3) == 1)
+                upgrade = new Upgrade(100 * rng.Next(6,16), 100 * rng.Next(3,9), "Scaler", "Images/Upgrades/ScaleUp.png");
+
+            else
+                upgrade = new Upgrade(100 * rng.Next(6, 16), 100 * rng.Next(3, 9), "Adaption", "Images/Upgrades/Adaption.png");
+
+            SceneManager.AddActor(upgrade);
+
+
+
+        } 
+
+
     }
 }

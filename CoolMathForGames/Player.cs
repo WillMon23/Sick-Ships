@@ -22,7 +22,14 @@ namespace Sick_Ship
         private Vector2 _volocity;
         private float _coolDown;
         private int _lives;
+
+        private bool _scaledUp;
+
         Phase _phase = Phase.FIRSTPHASE;
+
+        ShipUpgrade  _leftHandSide;
+
+        ShipUpgrade _rightHandSide;
 
         
         public static float Speed { get { return _speed; } set { _speed = value; } }
@@ -44,6 +51,11 @@ namespace Sick_Ship
             AABBCollider playerBoxCollider = new AABBCollider(100, 100, this);
             Collider = playerBoxCollider;
             _coolDown = 0;
+
+            _scaledUp = false;
+
+            _leftHandSide = new ShipUpgrade(.5f, -.5f);
+            _rightHandSide = new ShipUpgrade(.5f, .5f);
         }
 
         /// <summary>
@@ -80,18 +92,64 @@ namespace Sick_Ship
                 Forward = Volocity.Normalzed;
 
             LocalPosition += Volocity;
-            
+
             base.Update(deltaTime);
         }
 
         public override void OnCollision(Actor actor)
         {
-            if (actor.Name == "Bullet")
-                Console.WriteLine("Player Collided With Bullet");
+            if (actor.Name == "EnemyBullet")
+            {
+                if (_scaledUp)
+                {
+                    SetScale(100, 100);
+                    _scaledUp = false;
+                }
+                else
+                {
+                    if (_phase == Phase.THIRDPHASE)
+                    {
+
+                        RemoveChild(_rightHandSide);
+                        SceneManager.RemoverActor(_rightHandSide);
+                        _phase = Phase.SECONDPHASE;
+                    }
+                    else if (_phase == Phase.SECONDPHASE)
+                    {
+                        RemoveChild(_leftHandSide);
+                        SceneManager.RemoverActor(_leftHandSide);
+                        _phase = Phase.FIRSTPHASE;
+                    }
+                    else if (_phase == Phase.FIRSTPHASE && _scaledUp)
+                        _phase = Phase.DEADPHASE;
+                }
+            }
             if (actor.Name == "Scaler")
             {
-                SetScale(200, 200);
+                if (!_scaledUp)
+                {
+                    SetScale(200, 200);
+                    _scaledUp = true;
+                }
+
                 SceneManager.RemoverActor(actor);
+            }
+            if (actor.Name == "Adaption")
+            {
+                SceneManager.RemoverActor(actor);
+                if (_phase == Phase.FIRSTPHASE)
+                {
+                    SceneManager.AddActor(_leftHandSide);
+                    AddChild(_leftHandSide);
+                    _phase = Phase.SECONDPHASE;
+                }
+                else if (_phase == Phase.SECONDPHASE)
+                {
+                    SceneManager.AddActor(_rightHandSide);
+                    AddChild(_rightHandSide);
+                    _phase = Phase.THIRDPHASE; 
+                }
+                
             }
 
         }
@@ -104,23 +162,22 @@ namespace Sick_Ship
             base.Draw();
             Collider.Draw();
         }
-        
+
         /// <summary>
         /// Creats bullets for the player to shot at there target
         /// </summary>sd
         /// <returns></returns>
-        public void  ShootAShot()
+        public void ShootAShot()
         {
             //Random number genarator 
             Random rng = new Random();
 
             int chance = rng.Next(1, 5);
 
-              Bullet shot = new Bullet(GlobalTransform.M02, GlobalTransform.M12, (Speed * 2), "PlayerBullet","Images/bullet.png", this);
+            Bullet shot = new Bullet(GlobalTransform.M02, GlobalTransform.M12, (Speed * 2), "PlayerBullet", "Images/bullet.png", this);
 
             SceneManager.AddActor(shot);
         }
-
 
     }
 }
