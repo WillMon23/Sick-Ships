@@ -64,6 +64,10 @@ namespace Sick_Ship
                 
             }
 
+            if (actor.Name == "Player")
+                SceneManager.RemoverActor(this);
+
+
             if (actor.Name == "Enemey")
                 SceneManager.RemoverActor(this);
 

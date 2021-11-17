@@ -100,6 +100,7 @@ namespace Sick_Ship
         {
             if (actor.Name == "EnemyBullet")
             {
+                SceneManager.RemoverActor(actor);
                 if (_scaledUp)
                 {
                     SetScale(100, 100);
