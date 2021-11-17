@@ -1,4 +1,4 @@
-### CoolMathForGames
+### Sick_Ships
 
 ## Summory:
 - Created space game to demonstrate my understanding of 
