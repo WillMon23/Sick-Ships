@@ -1,5 +1,11 @@
 ### Sick_Ships
 
+## How to Open Game Instruction
+1. UnZip MathForGames File
+2. Open Sick_Ship(Game)
+3. Open .exe to access game
+
+
 ## Summory:
 - Created space game to demonstrate my understanding of 
   - Vectors
@@ -12,8 +18,19 @@
   - Normalization 
   - Magnitude 
 
+## Game Intructions:
+Player just needs to defeat all enemys that apper to get to the next level 
 
-## Controls:
+
+There are Upgrade pick ups to help in defeating the enemies.
+
+
+Use these Upgrades to you advantage to win.
+
+For Demontration perposes you can switch scene by pressing the number keys 
+
+
+## Game Controls:
 - Player can move by pressing the corisponding keys on the keyboard 
   - Left  - (W) Key
   - Right - (D) Key
@@ -25,16 +42,10 @@
   - Shoot - (Space) Key 
 
 
-## Intructions:
-Player just needs to defeat all enemys that apper to get to the next level 
 
 
-There are Upgrade pick ups to help in defeating the enemies.
-
-
-Use these Upgrades to you advantage to win.
-
-For Demontration perposes you can switch scene by pressing the number keys 
+## For Demontration perposes
+You can switch scene by pressing the number keys 
 
 - First Scene -  (1) Key
 
