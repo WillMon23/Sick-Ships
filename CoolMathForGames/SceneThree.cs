@@ -5,7 +5,8 @@ using System.Text;
 namespace Sick_Ship
 {
     /// <summary>
-    /// MEant to be made once a player attacks 
+    /// Third scene 
+    /// meant to hold the hardests level of all the scenes 
     /// </summary>
     class SceneThree : Scene
     {
@@ -13,17 +14,20 @@ namespace Sick_Ship
         {
             base.Start();
 
-            GameManager.EnemyCounter = 0;
+            // Decoration
+            Planet cosmo = new Planet(800, 450, "Cosmo", "Images/Planets/spiral.png", true);
+            cosmo.SetScale(2000, 2000);
+            AddActor(cosmo);
 
-            EnemySpawner EnemySpawner = new EnemySpawner(100);
+            // Sets current state of enemy counter to 0
+            GameManager.EnemyCounter = 0;
+            // Creats a new set of enemies
+            EnemySpawner EnemySpawner = new EnemySpawner(50);
             AddActor(EnemySpawner);
 
-            Planet cosmo = new Planet(800, 450, "Cosmo", "Images/Planets/cosmo.png", true);
-            cosmo.SetScale(2000, 2000);
-
-            Boss sceneThreeBoss = new Boss(1500, 450, "SceneThreeBoss", "");
-
-            AddActor(cosmo);
+            // The Boss of the scene 
+            Boss sceneThreeBoss = new Boss(1500, 450, "SceneThreeBoss", "Images/player.png");
+            AddActor(sceneThreeBoss);
 
             AddActor(GameManager.Player);
         }

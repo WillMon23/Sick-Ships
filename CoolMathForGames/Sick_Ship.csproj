@@ -11,12 +11,20 @@
     <None Remove="Images\Planets\cosmo.png" />
     <None Remove="Images\Planets\earth.png" />
     <None Remove="Images\Planets\moon.png" />
+    <None Remove="Images\Planets\nebula.png" />
+    <None Remove="Images\Planets\spiral.png" />
     <None Remove="Images\Planets\sun.png" />
     <None Remove="Images\Rocket.png" />
     <None Remove="Images\Saucer.png" />
     <None Remove="Images\Upgrades\Adaption.png" />
     <None Remove="Images\Upgrades\ScaleUp.png" />
     <None Remove="player.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Images\Planets\nebula.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
@@ -33,6 +41,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\Planets\moon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Planets\spiral.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\Planets\sun.png">

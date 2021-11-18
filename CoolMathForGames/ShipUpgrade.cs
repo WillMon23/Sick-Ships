@@ -9,7 +9,7 @@ namespace Sick_Ship
     {
         private float _coolDown = 0;
 
-        public ShipUpgrade(float x, float y): base(x,y, "Upgrades", "Images/Saucer.png")
+        public ShipUpgrade(float x, float y): base(x,y, "Upgrades", "Images/player.png")
         {
 
         }
@@ -20,18 +20,23 @@ namespace Sick_Ship
             CircleCollider circleCollider = new CircleCollider(20, this);
             Collider = circleCollider;
             SetScale(1f, 1f);
+
+            
         }
 
         public override void Update(float deltaTime)
         {
+            Forward = GameManager.Player.Forward;
             base.Update(deltaTime);
             if (Raylib.IsKeyDown(KeyboardKey.KEY_SPACE) && _coolDown > .5f)
             {
+               
                 ShootAShot();
                 _coolDown = 0;
             }
             _coolDown += deltaTime;
             
+
 
         }
 

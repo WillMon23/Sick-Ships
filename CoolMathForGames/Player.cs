@@ -183,7 +183,7 @@ namespace Sick_Ship
 
             int chance = rng.Next(1, 5);
 
-            Bullet shot = new Bullet(GlobalTransform.M02, GlobalTransform.M12, (Speed * 2), "PlayerBullet", "Images/bullet.png", this);
+            Bullet shot = new Bullet(GlobalTransform.M02, GlobalTransform.M12, (Speed * 2), "PlayerBullet", "Images/Planets/nebula.png", this);
 
             SceneManager.AddActor(shot);
         }
