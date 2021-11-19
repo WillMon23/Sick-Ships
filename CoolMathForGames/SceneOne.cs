@@ -28,7 +28,7 @@ namespace Sick_Ship
             moon.SetScale(0.3f, 0.3f);
             AddActor(moon);
 
-            UpgradeSpawner upgradeSpawner = new UpgradeSpawner();
+            UpgradeSpawner upgradeSpawner = new UpgradeSpawner(5);
             AddActor(upgradeSpawner);
 
 

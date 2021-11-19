@@ -29,6 +29,9 @@ namespace Sick_Ship
             Boss sceneThreeBoss = new Boss(1500, 450, "SceneThreeBoss", "Images/Saucer.png");
             AddActor(sceneThreeBoss);
 
+            UpgradeSpawner upgradeSpawner = new UpgradeSpawner(1);
+            AddActor(upgradeSpawner);
+
             GameManager.Player = new Player(200, 400, 500, "Player", "Images/Rocket.png");
             AddActor(GameManager.Player);
         }

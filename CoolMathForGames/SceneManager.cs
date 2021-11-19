@@ -16,6 +16,8 @@ namespace Sick_Ship
 
         public void Start()
         {
+
+            
              
             _currentSceneIndex = AddScene(new SceneOne());
             _scenes[_currentSceneIndex].Start();
@@ -51,6 +53,13 @@ namespace Sick_Ship
             Raylib.EndDrawing();
 
         }
+
+        public void End()
+        {
+
+        }
+
+
         /// <summary>
         /// Created to append new scnene to the current listing of scene 
         /// </summary>

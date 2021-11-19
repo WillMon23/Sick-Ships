@@ -25,7 +25,9 @@ namespace Sick_Ship
             private set { _texture.height = value; }
         }
 
-
+        /// <summary>
+        /// Sets a path to a png
+        /// </summary>
         /// <param name="path">The File of the image to use as the testure</param>
         public Sprite(string path)
         {

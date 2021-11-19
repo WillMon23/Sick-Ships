@@ -11,7 +11,6 @@ namespace Sick_Ship
     {
         public enum Phase
         {
-            DEADPHASE,
             FIRSTPHASE,
             SECONDPHASE,
             THIRDPHASE
@@ -72,7 +71,7 @@ namespace Sick_Ship
             }
 
             if (Raylib.IsKeyDown(KeyboardKey.KEY_T))
-                _lives += 20;
+                _lives += 100;
                 
 
 
@@ -140,11 +139,6 @@ namespace Sick_Ship
                         // . . . Changes current scene to be First Phase
                         _currentPhase = Phase.FIRSTPHASE;
                     }
-                    // else if current phase is equal to First phase or 
-                    else if (_currentPhase == Phase.FIRSTPHASE && !_scaledUp)
-                    { 
-                        _currentPhase = Phase.DEADPHASE;
-                    }
                     
                 }
                 //. . . removes reduces lives by 1
@@ -163,7 +157,6 @@ namespace Sick_Ship
             }
             if (actor.Name == "Adaption")
             {
-                SceneManager.RemoverActor(actor);
                 if (_currentPhase == Phase.FIRSTPHASE)
                 {
                     _lives++;
@@ -179,7 +172,7 @@ namespace Sick_Ship
                     _lives++;
                     _currentPhase = Phase.THIRDPHASE; 
                 }
-                
+                SceneManager.RemoverActor(actor);
             }
 
         }

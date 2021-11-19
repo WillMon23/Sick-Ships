@@ -8,11 +8,16 @@ namespace Sick_Ship
     {
         private float _timer = 0;
 
-        public UpgradeSpawner() : base(0, 0, "UpgradeSpawner", "") { }
+        private float _spawnRate = 0;
+
+        public UpgradeSpawner(float spawnRate) : base(0, 0, "UpgradeSpawner", "") 
+        {
+            _spawnRate = spawnRate;
+        }
 
         public override void Update(float deltaTime)
         {
-            if (_timer >= 5f)
+            if (_timer >= _spawnRate)
             {
                 SpawningUpgrades();
                 _timer = 0;
@@ -24,7 +29,7 @@ namespace Sick_Ship
 
 
         /// <summary>
-        /// Handles Spawning for the possible upgrades
+        /// Handles Spawning all the upgrades to the scene
         /// </summary>
         private void SpawningUpgrades()
         {

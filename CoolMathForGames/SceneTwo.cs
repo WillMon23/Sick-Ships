@@ -26,7 +26,7 @@ namespace Sick_Ship
 
             EnemySpawner EnemySpawner = new EnemySpawner(10);
 
-            UpgradeSpawner upgradeSpawner = new UpgradeSpawner();
+            UpgradeSpawner upgradeSpawner = new UpgradeSpawner(5);
             AddActor(upgradeSpawner);
 
             AddActor(sun);
