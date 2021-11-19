@@ -96,7 +96,14 @@ namespace MathLibrary
                     0, 0, 1
                 );
         }
-    
+        
+        /// <summary>
+        /// Overrides the addition oportator in order to
+        /// add two matrixes together
+        /// </summary>
+        /// <param name="lhs">left hand side</param>
+        /// <param name="rhs">right hand side</param>
+        /// <returns> new matrix3</returns>
         public static Matrix3 operator +(Matrix3 lhs, Matrix3 rhs)
         {
             Matrix3 temp = new Matrix3();
@@ -119,6 +126,13 @@ namespace MathLibrary
             return temp;
         }
 
+        /// <summary>
+        /// Overrides the subtraction oportator in order to
+        /// subtract two matrixes together
+        /// </summary>
+        /// <param name="lhs">left hand side</param>
+        /// <param name="rhs">right hand side</param>
+        /// <returns> new matrix</returns>
         public static Matrix3 operator -(Matrix3 lhs, Matrix3 rhs)
         {
             Matrix3 temp = new Matrix3();
@@ -141,6 +155,13 @@ namespace MathLibrary
             return temp;
         }
 
+        /// <summary>
+        /// Overrides the multiplication oportator in order to
+        /// multiply two matrixes together
+        /// </summary>
+        /// <param name="lhs">left hand side</param>
+        /// <param name="rhs">right hand side</param>
+        /// <returns> new matrix3</returns>
         public static Matrix3 operator *(Matrix3 lhs, Matrix3 rhs)
         {
             return new Matrix3
@@ -169,6 +190,13 @@ namespace MathLibrary
                 );
         }
 
+        /// <summary>
+        /// Overrides the multiplication oportator in order to
+        /// multiply a matrixes and a Vector 3 together
+        /// </summary>
+        /// <param name="lhs">left hand side</param>
+        /// <param name="rhs">right hand side</param>
+        /// <returns> new Vector3</returns>
         public static Vector3 operator *(Matrix3 lhs, Vector3 rhs)
         {
             return new Vector3(rhs.X * lhs.M00 + rhs.Y * lhs.M01 + rhs.Z * lhs.M02, 

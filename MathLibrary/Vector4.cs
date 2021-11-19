@@ -60,16 +60,36 @@ namespace MathLibrary
             return new Vector4 { W = lhs.W + rhs.W, X = lhs.X + rhs.X, Y = lhs.Y + rhs.Y, Z = lhs.Z + rhs.Z };
         }
 
+        /// <summary>
+        /// Subtract the values in order to make a new vactor 
+        /// </summary>
+        /// <param name="lhs">left hand side</param>
+        /// <param name="rhs">right hand side</param>
+        /// <returns> new Vector4</returns>
         public static Vector4 operator -(Vector4 lhs, Vector4 rhs)
         {
             return new Vector4 { W = lhs.W - rhs.W, X = lhs.X - rhs.X, Y = lhs.Y - rhs.Y, Z = lhs.Z - rhs.Z };
         }
 
+        /// <summary>
+        /// Overrrides the  * operator in order to 
+        /// creat a new vector with the values multiplied 
+        /// </summary>
+        /// <param name="lhs">left hand side</param>
+        /// <param name="rhs">right hand side</param>
+        /// <returns> new Vector4</returns>
         public static Vector4 operator *(Vector4 lhs, float scaler)
         {
             return new Vector4 { W = lhs.W * scaler, X = lhs.X * scaler, Y = lhs.Y * scaler, Z = lhs.Z * scaler };
         }
 
+        /// <summary>
+        /// Overrrides the  * operator in order to 
+        /// creat a new vector with the values multiplied 
+        /// </summary>
+        /// <param name="lhs">left hand side</param>
+        /// <param name="rhs">right hand side</param>
+        /// <returns> new Vector4</returns>
         public static Vector4 operator *(float scaler, Vector4 lhs)
         {
             return new Vector4 { W = lhs.W * scaler, X = lhs.X * scaler, Y = lhs.Y * scaler, Z = lhs.Z * scaler };
@@ -78,9 +98,9 @@ namespace MathLibrary
         /// Overrides the == in order to get a bool wether the value in the 
         /// vectors are equal together 
         /// </summary>
-        /// <param name="lhs"></param>
-        /// <param name="rhs"></param>
-        /// <returns>true</returns>
+        /// <param name="lhs">left hand side</param>
+        /// <param name="rhs">right hand side</param>
+        /// <returns> new Vector4</returns>
         public static bool operator ==(Vector4 lhs, Vector4 rhs)
         {
             return (lhs.X == rhs.X && lhs.Y == rhs.Y && lhs.Z == rhs.Z && lhs.W == rhs.W);
@@ -89,16 +109,21 @@ namespace MathLibrary
         /// <summary>
         /// Overrides the != operator in order to get a 
         /// bool to see weather the vectors are diffrent
-        /// 
-        /// </summary>
-        /// <param name="lhs"></param>
-        /// <param name="rhs"></param>
-        /// <returns>false</returns>
+        /// <param name="lhs">left hand side</param>
+        /// <param name="rhs">right hand side</param>
+        /// <returns> new Vector4</returns>
         public static bool operator !=(Vector4 lhs, Vector4 rhs)
         {
             return (lhs.X != rhs.X || lhs.Y != rhs.Y || lhs.Z != rhs.Z || lhs.W != rhs.W);
         }
 
+        /// <summary>
+        /// Overrides the / operator in order to 
+        /// create a new vector with the values devided
+        /// </summary>
+        /// <param name="lhs">left hand side</param>
+        /// <param name="rhs">right hand side</param>
+        /// <returns> new Vector4</returns>
         public static Vector4 operator /(Vector4 lhs, float scaler)
         {
             return new Vector4 { W = lhs.W / scaler, X = lhs.X / scaler, Y = lhs.Y / scaler, Z = lhs.Z / scaler };

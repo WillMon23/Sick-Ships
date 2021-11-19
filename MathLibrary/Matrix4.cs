@@ -105,6 +105,13 @@ namespace MathLibrary
                 );
         }
 
+        /// <summary>
+        /// Overrides the addition oportator in order to
+        /// two matrixes together
+        /// </summary>
+        /// <param name="lhs">left hand side</param>
+        /// <param name="rhs">right hand side</param>
+        /// <returns> new matrix</returns>
         public static Matrix4 operator +(Matrix4 lhs, Matrix4 rhs)
         {
             Matrix4 temp = new Matrix4();
@@ -135,6 +142,13 @@ namespace MathLibrary
             return new Matrix4();
         }
 
+        /// <summary>
+        /// Overrides the subtraction oportator in order to
+        /// subtract two matrixes together
+        /// </summary>
+        /// <param name="lhs">left hand side</param>
+        /// <param name="rhs">right hand side</param>
+        /// <returns> new matrix4</returns>
         public static Matrix4 operator -(Matrix4 lhs, Matrix4 rhs)
         {
             Matrix4 temp = new Matrix4();
@@ -166,6 +180,13 @@ namespace MathLibrary
             return new Matrix4();
         }
 
+        /// <summary>
+        /// Overrides the multiplication oportator in order to
+        /// multiply two matrixes together
+        /// </summary>
+        /// <param name="lhs">left hand side</param>
+        /// <param name="rhs">right hand side</param>
+        /// <returns> new matrix4</returns>
         public static Matrix4 operator *(Matrix4 lhs, Matrix4 rhs)
         {
             return new Matrix4
@@ -210,7 +231,13 @@ namespace MathLibrary
 
         }
 
-
+        /// <summary>
+        /// Overrides the multiplication oportator in order to
+        /// multiply a matrixes and a Vector4 together
+        /// </summary>
+        /// <param name="lhs">left hand side</param>
+        /// <param name="rhs">right hand side</param>
+        /// <returns> new Vector3=4</returns>
         public static Vector4 operator *(Matrix4 lhs, Vector4 rhs)
         {
             return new Vector4(
