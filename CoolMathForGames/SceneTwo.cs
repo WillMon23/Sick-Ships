@@ -18,6 +18,10 @@ namespace Sick_Ship
             Planet sun = new Planet(800, 450, "Sun", "Images/Planets/sun.png");
             sun.SetScale(700, 700);
 
+            Planet cosmo = new Planet(800, 450, "Cosmo", "Images/Planets/spiral.png", true);
+            cosmo.SetScale(2000, 2000);
+            AddActor(cosmo);
+
             Planet earth = new Planet(.7f, .7f, "Earth", "Images/Planets/earth.png");
             earth.SetScale(0.3f, 0.3f);
 

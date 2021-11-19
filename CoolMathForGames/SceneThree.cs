@@ -22,7 +22,7 @@ namespace Sick_Ship
             // Sets current state of enemy counter to 0
             GameManager.EnemyCounter = 0;
             // Creats a new set of enemies
-            EnemySpawner EnemySpawner = new EnemySpawner(50);
+            EnemySpawner EnemySpawner = new EnemySpawner(25);
             AddActor(EnemySpawner);
 
             // The Boss of the scene 

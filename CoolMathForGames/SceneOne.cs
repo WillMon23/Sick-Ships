@@ -16,6 +16,13 @@ namespace Sick_Ship
             EnemySpawner EnemySpawner = new EnemySpawner(5);
             AddActor(EnemySpawner);
 
+            UIText lostMenu = new UIText(400, 225, "Lost Screen", Color.RED, 400, 450, 1000, "You Lose");
+            AddActor(lostMenu);
+
+            Planet cosmo = new Planet(800, 450, "Cosmo", "Images/Planets/cosmo.png", true);
+            cosmo.SetScale(2000, 2000);
+            AddActor(cosmo);
+
             //Creats thr actors starting position
             Planet sun = new Planet(800, 450, "Sun", "Images/Planets/sun.png");
             sun.SetScale(200, 200);
@@ -32,24 +39,12 @@ namespace Sick_Ship
             UpgradeSpawner upgradeSpawner = new UpgradeSpawner(5);
             AddActor(upgradeSpawner);
 
-
             sun.AddChild(earth);
             earth.AddChild(moon);
-            
-            
+
 
             GameManager.Player = new Player(200, 400, 500, "Player", "Images/Rocket.png");
             AddActor(GameManager.Player);
-        }
-
-        public override void Update(float deltaTime)
-        {
-            base.Update(deltaTime);
-            if (GameManager.Player.Lives <= 0)
-            {
-                UIText lostMenu = new UIText(800, 450, "Lost Screen", Color.RED, 800, 450, 1000, "You Lose");
-                AddActor(lostMenu);
-            }
         }
     }
 }

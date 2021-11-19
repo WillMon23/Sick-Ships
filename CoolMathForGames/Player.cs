@@ -47,7 +47,7 @@ namespace Sick_Ship
         {
             base.Start();
             SetScale(100, 100);
-            AABBCollider playerBoxCollider = new AABBCollider(100, 100, this);
+            AABBCollider playerBoxCollider = new AABBCollider(75, 75, this);
             Collider = playerBoxCollider;
             _coolDown = 0;
 
@@ -70,6 +70,7 @@ namespace Sick_Ship
                 _coolDown = 0;
             }
 
+            //Adds an addition to help for debug use
             if (Raylib.IsKeyDown(KeyboardKey.KEY_T))
                 _lives += 100;
                 
@@ -109,6 +110,7 @@ namespace Sick_Ship
                 // this is scaled up. . . 
                 if (_scaledUp)
                 {
+
                     //Set the scale to 100 hieght and 100 width
                     SetScale(100, 100);
                     // sets scale to false
@@ -169,7 +171,6 @@ namespace Sick_Ship
                     _lives++;
                     SceneManager.AddActor(_rightHandSide);
                     AddChild(_rightHandSide);
-                    _lives++;
                     _currentPhase = Phase.THIRDPHASE; 
                 }
                 SceneManager.RemoverActor(actor);
