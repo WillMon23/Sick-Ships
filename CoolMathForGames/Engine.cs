@@ -26,7 +26,7 @@ namespace Sick_Ship
             float lastTime = 0;
             float deltTime = 0;
             // Loop until the application is told to close
-            while (!Raylib.WindowShouldClose())
+            while (!Raylib.WindowShouldClose() && GameManager.Player.Lives > 0)
             {
                 //Get how much time has passed since the application started 
                 currentTme = _stopwatch.ElapsedMilliseconds / 1000.0f;
@@ -54,7 +54,7 @@ namespace Sick_Ship
         {
             //Creats a window  using raylib
             Raylib.InitWindow(1600, 900, "Math For Games");
-            Raylib.SetTargetFPS(0);
+            Raylib.SetTargetFPS(60);
 
             _stopwatch.Start();
             _sceneManager.Start();
@@ -75,6 +75,7 @@ namespace Sick_Ship
         private void Update(float deltaTime)
         {
             _sceneManager.Update(deltaTime);
+            
         }
 
         /// <summary>

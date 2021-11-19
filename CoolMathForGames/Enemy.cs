@@ -28,7 +28,7 @@ namespace Sick_Ship
        
 
         /// <summary>
-        /// Enemy Contructor 
+        /// Enemy decontructor 
         /// What defines to be a enemy 
         /// </summary>
         /// <param name="icon">What it looks like in the console</param>
@@ -105,25 +105,29 @@ namespace Sick_Ship
         }
 
         /// <summary>
-        /// If the 
+        /// Checks the position of the 
+        /// target actor and follows it once in reange
         /// </summary>
         /// <returns></returns>
         private bool GetTargetInSight()
         {
-            
+                // get the distance from the player local position and this enemies world position then it normalizes it 
+                // to get a more scaled down depiction
                 Vector2 directionTarget = (GameManager.Player.LocalPosition - WorldPosition).Normalzed;
-
+                
+                // Getst he distance from it current state and the player ans subtreacts it then gets the magnitude
                 float distance = Vector2.Distance(GameManager.Player.LocalPosition, WorldPosition);
-
+                
                 float cosTarget = distance / LocalPosition.Magnitude;
 
+                // Checks to see if it facing at the enemies current forward at a certen distance from the player 
                 return (distance < _lineOfSightRange) || Vector2.DotProduct(directionTarget, Forward) < 0;
         }
 
         public override void Draw()
         {
             base.Draw();
-            Collider.Draw();
+            //Collider.Draw();
         }
 
         public override void End()

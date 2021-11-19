@@ -37,6 +37,7 @@ namespace Sick_Ship
 
             AddActor(EnemySpawner);
 
+            GameManager.Player = new Player(200, 400, 500, "Player", "Images/Rocket.png");
             AddActor(GameManager.Player);
 
         }

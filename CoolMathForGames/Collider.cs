@@ -19,13 +19,24 @@ namespace Sick_Ship
 
         public Actor Owner { get { return _owner; } set { _owner = value; } }
 
-
+        /// <summary>
+        /// Collider deconstructor meant to creata prorameter 
+        /// in order to check for collision with it's sorrounding
+        /// </summary>
+        /// <param name="owner"></param>
+        /// <param name="colliderType"></param>
         public Collider(Actor owner, ColliderType colliderType)
         {
             _owner = owner;
             _colliderType = colliderType;
         }
 
+        /// <summary>
+        /// Checks to see what type of collider it has in 
+        /// as well what it's colliding with
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
         public bool CheckCollision(Actor other)
         {
             if (other.Collider.ColliderType == ColliderType.CIRCLE)

@@ -17,18 +17,34 @@ namespace Sick_Ship
             _collisionRadius = colldionRadius;
         }
 
+        /// <summary>
+        /// checks if there has been a collision with another 
+        /// actor that also has circle collision
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
         public override bool CheckCollisionCircle(CircleCollider other)
         {
+            // if the other circle collider is it self theen. . . 
             if (other.Owner == Owner)
+                //. . .Returns false
                 return false;
-
+            // Gets the disatance between two actors by subtracing there locations 
             float distance = Vector2.Distance(other.Owner.LocalPosition, Owner.LocalPosition);
 
+            // Get both radii and adds them up 
             float combinedRadii = other.CollisionRadius + CollisionRadius;
-
+            
+            //If the distance from both is less then or equal to the combined radiii returns a bool
             return distance <= combinedRadii;
         }
 
+        /// <summary>
+        /// Gets the furthes distance form the square
+        /// from the radius from the colliding circle
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
         public override bool CheckCollisionAABB(AABBCollider other)
         {
 

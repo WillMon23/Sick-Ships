@@ -46,7 +46,7 @@ namespace Sick_Ship
         public override void Draw()
         {
             base.Draw();
-            Collider.Draw();
+            //Collider.Draw();
         }
 
         /// <summary>

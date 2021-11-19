@@ -91,7 +91,7 @@ namespace Sick_Ship
         } 
 
         /// <summary>
-        /// Removes ana actor from the arary of actors 
+        /// Removes ana actor from the array of actors 
         /// </summary>
         /// <param name="actor">The actor being removed</param>
         /// <returns>If actor was removed or not</returns>

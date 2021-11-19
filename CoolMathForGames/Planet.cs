@@ -4,6 +4,7 @@ using System.Text;
 
 namespace Sick_Ship
 {
+    //Simulates a planet in rotstion 
     class Planet : Actor
     {
         private bool _rotate;
@@ -15,7 +16,7 @@ namespace Sick_Ship
         public override void Update(float deltaTime)
         {
             if(_rotate)
-                Rotate(deltaTime);
+                Rotate(-deltaTime);
             base.Update(deltaTime);
         }
     }

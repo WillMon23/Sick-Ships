@@ -15,7 +15,7 @@ namespace Sick_Ship
             base.Start();
 
             // Decoration
-            Planet cosmo = new Planet(800, 450, "Cosmo", "Images/Planets/spiral.png", true);
+            Planet cosmo = new Planet(800, 450, "Cosmo", "Images/Planets/nebula.png", true);
             cosmo.SetScale(2000, 2000);
             AddActor(cosmo);
 
@@ -26,9 +26,10 @@ namespace Sick_Ship
             AddActor(EnemySpawner);
 
             // The Boss of the scene 
-            Boss sceneThreeBoss = new Boss(1500, 450, "SceneThreeBoss", "Images/player.png");
+            Boss sceneThreeBoss = new Boss(1500, 450, "SceneThreeBoss", "Images/Saucer.png");
             AddActor(sceneThreeBoss);
 
+            GameManager.Player = new Player(200, 400, 500, "Player", "Images/Rocket.png");
             AddActor(GameManager.Player);
         }
     }

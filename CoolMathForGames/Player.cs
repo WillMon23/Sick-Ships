@@ -21,11 +21,11 @@ namespace Sick_Ship
         private static float _speed;
         private Vector2 _volocity;
         private float _coolDown;
-        private int _lives;
+        private int _lives = 1;
 
         private bool _scaledUp;
 
-        Phase _phase = Phase.FIRSTPHASE;
+        Phase _currentPhase = Phase.FIRSTPHASE;
 
         ShipUpgrade  _leftHandSide;
 
@@ -54,8 +54,6 @@ namespace Sick_Ship
 
             _scaledUp = false;
 
-            _lives = 1;
-
             _leftHandSide = new ShipUpgrade(.5f, -.5f);
             _rightHandSide = new ShipUpgrade(.5f, .5f);
         }
@@ -72,10 +70,13 @@ namespace Sick_Ship
                 ShootAShot();
                 _coolDown = 0;
             }
+
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_T))
+                _lives += 20;
+                
+
+
             _coolDown += deltaTime;
-
-
-
 
             //Check if a particular input has been press
             //Then returns 0, 1 or -1 if it was pressed or released
@@ -98,43 +99,62 @@ namespace Sick_Ship
             base.Update(deltaTime);
         }
 
+        // Set tigger for collsion
         public override void OnCollision(Actor actor)
         {
+            // if actor name is Ennemybullet. . . 
             if (actor.Name == "EnemyBullet")
             {
+                //Remove that actor from the scene 
                 SceneManager.RemoverActor(actor);
+                // this is scaled up. . . 
                 if (_scaledUp)
                 {
+                    //Set the scale to 100 hieght and 100 width
                     SetScale(100, 100);
+                    // sets scale to false
                     _scaledUp = false;
                 }
+                // else . . .
                 else
                 {
-                    if (_phase == Phase.THIRDPHASE)
+                    // if current phase equals Third Phase. . .
+                    if (_currentPhase == Phase.THIRDPHASE)
                     {
-
+                        // . . .Removes the right side as a child 
                         RemoveChild(_rightHandSide);
+                        //. . . Removes right hand side as an actor
                         SceneManager.RemoverActor(_rightHandSide);
-                        _phase = Phase.SECONDPHASE;
-                        _lives--;
+                        //. . . changes current phase to 
+                        _currentPhase = Phase.SECONDPHASE;
+
 
                     }
-                    else if (_phase == Phase.SECONDPHASE)
+                    // else if current phase equals Ssecond Phase. . .
+                    else if (_currentPhase == Phase.SECONDPHASE)
                     {
+                        // . . . removes left hand side actor 
                         RemoveChild(_leftHandSide);
+                        // . . . Removes left hand side actor from the scene
                         SceneManager.RemoverActor(_leftHandSide);
-                        _phase = Phase.FIRSTPHASE;
-                        _lives--;
+                        // . . . Changes current scene to be First Phase
+                        _currentPhase = Phase.FIRSTPHASE;
                     }
-                    else if (_phase == Phase.FIRSTPHASE && _scaledUp)
-                        _phase = Phase.DEADPHASE;
+                    // else if current phase is equal to First phase or 
+                    else if (_currentPhase == Phase.FIRSTPHASE && !_scaledUp)
+                    { 
+                        _currentPhase = Phase.DEADPHASE;
+                    }
                     
                 }
+                //. . . removes reduces lives by 1
+                _lives--;
             }
             if (actor.Name == "Scaler")
             {
                 if (!_scaledUp)
                 {
+                    _lives++;
                     SetScale(200, 200);
                     _scaledUp = true;
                 }
@@ -144,19 +164,20 @@ namespace Sick_Ship
             if (actor.Name == "Adaption")
             {
                 SceneManager.RemoverActor(actor);
-                if (_phase == Phase.FIRSTPHASE)
+                if (_currentPhase == Phase.FIRSTPHASE)
                 {
                     _lives++;
                     SceneManager.AddActor(_leftHandSide);
                     AddChild(_leftHandSide);
-                    _phase = Phase.SECONDPHASE;
+                    _currentPhase = Phase.SECONDPHASE;
                 }
-                else if (_phase == Phase.SECONDPHASE)
+                else if (_currentPhase == Phase.SECONDPHASE)
                 {
+                    _lives++;
                     SceneManager.AddActor(_rightHandSide);
                     AddChild(_rightHandSide);
                     _lives++;
-                    _phase = Phase.THIRDPHASE; 
+                    _currentPhase = Phase.THIRDPHASE; 
                 }
                 
             }
@@ -169,7 +190,7 @@ namespace Sick_Ship
         public override void Draw()
         {
             base.Draw();
-            Collider.Draw();
+            //Collider.Draw();
         }
 
         /// <summary>

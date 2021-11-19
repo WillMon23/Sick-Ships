@@ -10,13 +10,13 @@ namespace Sick_Ship
     {
         private static Scene[] _scenes = new Scene[0];
         private static int _currentSceneIndex;
-        private static bool _applicationShouldClose;
+        private static bool _applicationShouldClose = false;
+
+        public static bool ApplicationShoouldClose { get { return _applicationShouldClose; } set { _applicationShouldClose = value; } }
 
         public void Start()
         {
-
-            
-
+             
             _currentSceneIndex = AddScene(new SceneOne());
             _scenes[_currentSceneIndex].Start();
             
@@ -51,13 +51,6 @@ namespace Sick_Ship
             Raylib.EndDrawing();
 
         }
-
-        public void End()
-        {
-
-        }
-
-
         /// <summary>
         /// Created to append new scnene to the current listing of scene 
         /// </summary>
@@ -105,29 +98,33 @@ namespace Sick_Ship
             return false;
         }
 
+        // Adds actors to currrent array of actors in a scene 
         public static void AddActor(Actor actor)
         {
             _scenes[_currentSceneIndex].AddActor(actor);
         }
 
+        /// <summary>
+        /// Creatrs scenes then sets it to that scene as its being created 
+        /// </summary>
         private void SceneTransition()
         {
 
-            if (Raylib.IsKeyDown(KeyboardKey.KEY_ONE) || GameManager.EnemyCounter <= -1)
+             if (Raylib.IsKeyDown(KeyboardKey.KEY_ONE) && GameManager.EnemyCounter > 0)
             {
 
                 _currentSceneIndex = AddScene(new SceneOne());
                 _scenes[_currentSceneIndex].Start();
             }
 
-            if (Raylib.IsKeyDown(KeyboardKey.KEY_TWO) || GameManager.EnemyCounter <= -1)
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_TWO) && GameManager.EnemyCounter > 0)
             {
 
                 _currentSceneIndex = AddScene(new SceneTwo());
                 _scenes[_currentSceneIndex].Start();
             }
 
-            if (Raylib.IsKeyDown(KeyboardKey.KEY_THREE) || GameManager.EnemyCounter <= -1)
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_THREE) && GameManager.EnemyCounter > 0)
             {
                 _currentSceneIndex = AddScene(new SceneThree());
                 _scenes[_currentSceneIndex].Start();

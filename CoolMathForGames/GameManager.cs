@@ -16,8 +16,14 @@ namespace Sick_Ship
 
         public static bool _enemiesDied = false;
 
-        public static int EnemyCounter { get   { return _enemyCounter; } set { _enemyCounter = value; } }
+        /// <summary>
+        /// Keeps tabs on how many enemies have been created 
+        /// </summary>
+        public static int EnemyCounter { get { return _enemyCounter; } set { _enemyCounter = value; } }
 
+        /// <summary>
+        /// USer 
+        /// </summary>
         public static Player Player { get { return _player; } set { _player = value; } }
 
         public static void Update()

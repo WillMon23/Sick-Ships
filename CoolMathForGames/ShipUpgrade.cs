@@ -9,7 +9,7 @@ namespace Sick_Ship
     {
         private float _coolDown = 0;
 
-        public ShipUpgrade(float x, float y): base(x,y, "Upgrades", "Images/player.png")
+        public ShipUpgrade(float x, float y): base(x,y, "Upgrades", "Images/Rocket.png")
         {
 
         }
@@ -25,8 +25,7 @@ namespace Sick_Ship
         }
 
         public override void Update(float deltaTime)
-        {
-            Forward = GameManager.Player.Forward;
+        { 
             base.Update(deltaTime);
             if (Raylib.IsKeyDown(KeyboardKey.KEY_SPACE) && _coolDown > .5f)
             {
@@ -51,7 +50,7 @@ namespace Sick_Ship
 
             int chance = rng.Next(1, 5);
 
-            Bullet shot = new Bullet(GlobalTransform.M02, GlobalTransform.M12, 2000f , "PlayerBullet", "Images/bullet.png", this);
+            Bullet shot = new Bullet(GlobalTransform.M02, GlobalTransform.M12, 2000f , "PlayerBullet", "Images/bullet.png", GameManager.Player);
             
 
             SceneManager.AddActor(shot);
