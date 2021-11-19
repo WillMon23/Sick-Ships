@@ -50,8 +50,8 @@ namespace Sick_Ship
             //Adds all actor icon to buffer
             _scenes[_currentSceneIndex].Draw();
 
-            Raylib.EndDrawing();
 
+            Raylib.EndDrawing();
         }
 
         public void End()

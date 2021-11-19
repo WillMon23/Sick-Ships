@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Raylib_cs;
 
 namespace Sick_Ship
 {
@@ -39,6 +40,16 @@ namespace Sick_Ship
 
             GameManager.Player = new Player(200, 400, 500, "Player", "Images/Rocket.png");
             AddActor(GameManager.Player);
+        }
+
+        public override void Update(float deltaTime)
+        {
+            base.Update(deltaTime);
+            if (GameManager.Player.Lives <= 0)
+            {
+                UIText lostMenu = new UIText(800, 450, "Lost Screen", Color.RED, 800, 450, 1000, "You Lose");
+                AddActor(lostMenu);
+            }
         }
     }
 }

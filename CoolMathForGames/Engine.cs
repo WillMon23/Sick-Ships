@@ -26,7 +26,7 @@ namespace Sick_Ship
             float lastTime = 0;
             float deltTime = 0;
             // Loop until the application is told to close
-            while (!Raylib.WindowShouldClose() && GameManager.Player.Lives > 0)
+            while (!Raylib.WindowShouldClose())
             {
                 //Get how much time has passed since the application started 
                 currentTme = _stopwatch.ElapsedMilliseconds / 1000.0f;
