@@ -39,6 +39,7 @@ namespace MathLibrary
 
         /// <summary>
         /// Creates a new matrix that has been rotated bt the given in radians 
+        /// on the X
         /// </summary>
         /// <param name="radians"></param>
         /// <returns>The resualt of the rotation</returns>
@@ -51,6 +52,12 @@ namespace MathLibrary
                                     
         }
 
+        /// <summary>
+        /// Creates a new matrix that has been rotated bt the given in radians 
+        /// on the Y
+        /// </summary>
+        /// <param name="radians"></param>
+        /// <returns>The resualt of the rotation</returns>
         public static Matrix4 CreateRotationY(float radians)
         {
             return new Matrix4((float)Math.Cos(radians), 0, (float)Math.Sin(radians), 0,
@@ -59,6 +66,12 @@ namespace MathLibrary
                                 0, 0, 0, 1);       
         }
 
+        /// <summary>
+        /// Creates a new matrix that has been rotated bt the given in radians 
+        /// on the Z
+        /// </summary>
+        /// <param name="radians"></param>
+        /// <returns>The resualt of the rotation</returns>
         public static Matrix4 CreateRotationZ(float radians)
         {
             return new Matrix4((float)Math.Cos(radians), -(float)Math.Sin(radians), 0, 0,
