@@ -11,8 +11,14 @@ namespace Sick_Ship
 {
     class Engine
     {
+        /// <summary>
+        /// intializes a new instance of a stop watch
+        /// </summary>
         Stopwatch _stopwatch = new Stopwatch();
 
+        /// <summary>
+        /// intializes a new instance of a stop watch
+        /// </summary>
         SceneManager _sceneManager = new SceneManager();
 
         /// <summary>
@@ -43,7 +49,7 @@ namespace Sick_Ship
                 lastTime = currentTme;
 
             }
-            // Called end for the entire application
+            // Called end for the entire applicationa
             End();
         }
 
@@ -54,7 +60,7 @@ namespace Sick_Ship
         {
             //Creats a window  using raylib
             Raylib.InitWindow(1600, 900, "Math For Games");
-            Raylib.SetTargetFPS(0);
+            Raylib.SetTargetFPS(60);
 
             _stopwatch.Start();
             _sceneManager.Start();

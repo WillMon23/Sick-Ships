@@ -8,24 +8,43 @@ namespace Sick_Ship
 
     class SceneManager
     {
+        /// <summary>
+        /// Collectively keeps tabs on  how many scenes have been created
+        /// </summary>
         private static Scene[] _scenes = new Scene[0];
+
+        /// <summary>
+        /// Loctation in which a scene is currently being displayed to user 
+        /// </summary>
         private static int _currentSceneIndex;
+   
+        /// <summary>
+        /// current state of the application {if false = not closed, if true = open }
+        /// </summary>
         private static bool _applicationShouldClose = false;
 
+        /// <summary>
+        /// current state of the application {if false = not closed, if true = open }
+        /// </summary>
         public static bool ApplicationShoouldClose { get { return _applicationShouldClose; } set { _applicationShouldClose = value; } }
 
+        /// <summary>
+        /// Intitalises the current scenes oporation 
+        /// </summary>
         public void Start()
-        {
-
-            
-             
+        { 
             _currentSceneIndex = AddScene(new SceneOne());
             _scenes[_currentSceneIndex].Start();
             
         }
 
+        /// <summary>
+        /// Updates once per frame 
+        /// </summary>
+        /// <param name="deltaTime"></param>
         public void Update(float deltaTime)
         {
+            // Creatrs a new scene everytime it's being it's swapped to  if conditions are met  
             SceneTransition();
 
             _scenes[_currentSceneIndex].Update(deltaTime);
@@ -114,28 +133,34 @@ namespace Sick_Ship
         }
 
         /// <summary>
-        /// Creatrs scenes then sets it to that scene as its being created 
+        /// Creatrs a new scene everytime it's being it's swapped to  if conditions are met  
         /// </summary>
         private void SceneTransition()
         {
-
+            //IF key number 1 is preessed or EnemyCounter is less then 0 . . .
              if (Raylib.IsKeyDown(KeyboardKey.KEY_ONE) || GameManager.EnemyCounter < 0)
             {
-
+                //Adds SceneOne to array, Changes current scene based on the abount in the _scene array
                 _currentSceneIndex = AddScene(new SceneOne());
+                //Starts the scene
                 _scenes[_currentSceneIndex].Start();
             }
 
+            //IF key number 2 is preessed or EnemyCounter is less then 0 . . .
             if (Raylib.IsKeyDown(KeyboardKey.KEY_TWO) || GameManager.EnemyCounter < 0)
             {
-
+                ////Adds SceneTwo to array, Changes current scene based on the abount in the _scene array
                 _currentSceneIndex = AddScene(new SceneTwo());
+                //Starts the scene
                 _scenes[_currentSceneIndex].Start();
             }
 
+            //IF key number 3 is preessed or EnemyCounter is less then 0 . . .
             if (Raylib.IsKeyDown(KeyboardKey.KEY_THREE) || GameManager.EnemyCounter < 0)
             {
+                ////Adds SceneThree to array, Changes current scene based on the abount in the _scene array
                 _currentSceneIndex = AddScene(new SceneThree());
+                //Starts the scene
                 _scenes[_currentSceneIndex].Start();
             }
         }
