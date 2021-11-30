@@ -34,30 +34,35 @@ namespace Sick_Ship
         {
             for (int i = 0; i < _actors.Length; i++)
             {
+                //If actor start hasn't started
                 if (!Actors[i].Started)
+                    //Start the actor start 
                     Actors[i].Start();
-
+                //Update actor update every scene
                 Actors[i].Update(deltaTime);
 
-
-                //Checks for collision
                 for (int j = 0; j < Actors.Length; j++)
                 {
+                    //If i greater then j
                     if (i > j)
+                        //Just continue
                         continue;
-
+                    //If Actor Collids with another actor other then them selves
                     if (Actors[i].CheckForCollision(Actors[j]) && j != i)
+                        //Does thing if it collides 
                         Actors[i].OnCollision(Actors[j]);
                 }
             }
         }
 
         /// <summary>
-        /// Draws the 
+        /// Dose Actors Draw every
         /// </summary>
         public void Draw()
         {
+            //for the length of actor for every actor
             for (int i = 0; i < Actors.Length; i++)
+                //Do the draw function
                 Actors[i].Draw();
         }
 

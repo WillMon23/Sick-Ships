@@ -174,11 +174,15 @@ namespace Sick_Ship
         /// </summary>
         public void UpdateTransform()
         {
+            //Concatnates the translation, rotation and scale to the actors local transforms 
             LocalTransform = _translation * _rotation * _scale;
-
+            //if the parent is not equal to null. . .
             if (Parent != null)
+                //. . .Global Transform will be set to the Parents global transform x the actors local transfrom
                 GlobalTransform = Parent.GlobalTransform * LocalTransform;
+            //else . . .
             else
+                //. . .The Global transform is equal to LocalTransform
                 GlobalTransform = LocalTransform;
 
         }
@@ -189,14 +193,17 @@ namespace Sick_Ship
         /// <param name="child"></param>
         public void AddChild(Actor child)
         {
+            //creats a tamparay actor array by the size of children array plus 1
             Actor[] temp = new Actor[Children.Length + 1];
-
+            //for every actor in the actor array 
             for (int i = 0; i < Children.Length; i++)
+                //Adds all the children to the temp array 
                 temp[i] = Children[i];
+            //Set the added size to be the new child being added 
             temp[Children.Length] = child;
-
+            //Sets the child to be the the twmp array 
             Children = temp;
-
+            //Sets the child parent to be this actor
             child.Parent = this;
 
         }
@@ -207,23 +214,31 @@ namespace Sick_Ship
         /// <param name="child"></param>
         public bool RemoveChild(Actor child)
         {
+            //A check to see if the child was removed
             bool removed = false;
             Actor[] temp = new Actor[Children.Length - 1];
-
+            //Will idarate thriugh the temp array 
             int j = 0;
             for (int i = 0; i < Children.Length; i++)
-            {
+            {   
+                //if the child is not a part of the childrens array
                 if (Children[i] != child)
                 {
+                    // It'll be added to the temporary array 
                     temp[j] = Children[i];
+                    //Incraments by one
                     j++;
                 }
+                //else. . .
                 else
+                    //Sets the remove check to be true
                     removed = true;
             }
+            //IF the remove check is true
             if (removed)
+                //Sets the Children's array to be the temp array
                 Children = temp;
-
+            //Returns if actor was removed or not 
             return removed;
             
         }
