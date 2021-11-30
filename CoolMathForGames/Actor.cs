@@ -157,10 +157,10 @@ namespace Sick_Ship
         /// </summary>
         public virtual void Draw()
         {
+            //The sprite does not equal null
             if (_sprite != null)
+                //Dispaly thats sprite based of the globaltransfrom
                 _sprite.Draw(GlobalTransform);
-
-            
         }
 
         public virtual void End()
