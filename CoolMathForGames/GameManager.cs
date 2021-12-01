@@ -22,7 +22,7 @@ namespace Sick_Ship
         public static int EnemyCounter { get { return _enemyCounter; } set { _enemyCounter = value; } }
 
         /// <summary>
-        /// USer 
+        /// MAkes sure to keep track of the main instance of the users player
         /// </summary>
         public static Player Player { get { return _player; } set { _player = value; } }
 
