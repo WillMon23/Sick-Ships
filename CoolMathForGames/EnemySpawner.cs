@@ -33,10 +33,6 @@ namespace Sick_Ship
         /// Amount going to me replacated 
         /// </summary>
         public int TotalSpawning { get { return _totalSpawning; } set { _totalSpawning = value; } }
-        /// <summary>
-        /// THe acotr that is being replacated 
-        /// </summary>
-        public Actor Coping { get { return _coping; } private set { _coping = value; } }
 
         public EnemySpawner(int totalSpawning) : base(0, 0, "Spawner","")
         {
@@ -71,6 +67,10 @@ namespace Sick_Ship
             SceneManager.AddActor(enemy5);
         }
 
+        /// <summary>
+        /// Updates once per frame
+        /// </summary>
+        /// <param name="deltaTime"></param>
         public override void Update(float deltaTime)
         {
             //Spawns Enemy to the scene

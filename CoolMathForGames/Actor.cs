@@ -51,6 +51,10 @@ namespace Sick_Ship
         public Vector2 LocalPosition { get { return new Vector2(_translation.M02, _translation.M12); } 
                                        set { SetTranslation(value.X, value.Y); } }
 
+        /// <summary>
+        /// The location of the actor in retrosect of the world 
+        /// space
+        /// </summary>
         public Vector2 WorldPosition
         {
             //Return the global transform's T column

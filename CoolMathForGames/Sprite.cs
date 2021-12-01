@@ -11,7 +11,7 @@ namespace Sick_Ship
         private Texture2D _texture;
 
         /// <summary>
-        /// Width of the loaded texture
+        /// The distance from left and right
         /// </summary>
         public int Width
         {
@@ -19,6 +19,9 @@ namespace Sick_Ship
             private set { _texture.width = value; }
         }
 
+        /// <summary>
+        /// The disctance from  top to bottom
+        /// </summary>
          public int Height
         {
             get { return _texture.height; }
