@@ -17,6 +17,9 @@ namespace MathLibrary
             M20 = m20; M21 = m21; M22 = m22; 
         }
 
+        /// <summary>
+        /// Created to mask an identy to matrix 
+        /// </summary>
         public static Matrix3 Identity
         {
             get

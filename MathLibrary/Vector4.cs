@@ -6,9 +6,13 @@ namespace MathLibrary
 {
     public struct Vector4
     {
+        //X axis location
         public float X;
+        //Yaxis location
         public float Y;
+        //Z axis location
         public float Z;
+        //W location
         public float W;
 
         public Vector4(float x, float y, float z, float w)
@@ -19,8 +23,14 @@ namespace MathLibrary
             W = w;
         }
 
+        /// <summary>
+        /// Get the distance of two vectors vectors 
+        /// </summary>
         public float Magnitude { get { return (float)Math.Sqrt(X * X + Y * Y + Z * Z + W * W); } }
 
+        /// <summary>
+        /// Gwts the vector its assigned to and 
+        /// normalizes it 
         public Vector4 Normalized
         {
             get
@@ -30,12 +40,24 @@ namespace MathLibrary
             }
         }
 
-
+        /// <summary>
+        /// Gets two vectors and multyplies there X, Y, Z's 
+        /// in oder to add them together
+        /// </summary>
+        /// <param name="lhs">vector to left hand side</param>
+        /// <param name="rhs">vector to the right hand</param>
+        /// <returns></returns>
         public static float DotProduct(Vector4 lhs, Vector4 rhs)
         {
             return (lhs.X * rhs.X) + (lhs.Y * rhs.Y) + (lhs.Z * rhs.Z);
         }
 
+        /// <summary>
+        /// Gets the Perpecdicular Vector from two 4D Vectors 
+        /// </summary>
+        /// <param name="lhs">Left Hand Side</param>
+        /// <param name="rhs">Right Hand Side</param>
+        /// <returns>Perpendicular Vector from the two vectors</returns>
         public static Vector4 CrossProduct(Vector4 lhs, Vector4 rhs)
         {
             return new Vector4
@@ -47,6 +69,11 @@ namespace MathLibrary
             };
         }
 
+
+        /// <summary>
+        /// Change this vector to have a magnitude that is equal to one 
+        /// </summary>
+        /// <returns>The result of the normalization. Returns an empty vector if the magnitude is zero</returns>
         public Vector4 Normalize()
         {
             if (Magnitude == 0)

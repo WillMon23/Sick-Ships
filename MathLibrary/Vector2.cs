@@ -4,7 +4,9 @@ namespace MathLibrary
 {
     public struct Vector2
     {
+        //X axis location
         public float X;
+        //Y axis location
         public float Y;
 
         public Vector2(float x, float y)
@@ -14,10 +16,14 @@ namespace MathLibrary
         }
 
         /// <summary>
-        /// Get the length of the vectors 
+        /// Get the distance of two vectors vectors 
         /// </summary>
         public float Magnitude { get { return (float)Math.Sqrt(X * X + Y * Y); } }
 
+
+        /// <summary>
+        /// Gwts the vector its assigned to and 
+        /// normalizes it 
         public Vector2 Normalzed
         {
             get
@@ -43,8 +49,8 @@ namespace MathLibrary
         /// Gets two vectors and multyplies there X and Y's 
         /// in oder to add them together
         /// </summary>
-        /// <param name="lhs">left ha</param>
-        /// <param name="rhs"></param>
+        /// <param name="lhs">vector to left hand side</param>
+        /// <param name="rhs">vector to the right hand</param>
         /// <returns></returns>
         public static float DotProduct(Vector2 lhs, Vector2 rhs)
         {
@@ -54,8 +60,8 @@ namespace MathLibrary
         /// <summary>
         /// Finds the distance from the first vector to the second
         /// </summary>
-        /// <param name="lhs"></param>
-        /// <param name="rhs"></param>
+        /// <param name="lhs">left hand side</param>
+        /// <param name="rhs">right hand side</param>
         /// <returns></returns>
         public static float Distance(Vector2 lhs, Vector2 rhs)
         {
@@ -138,6 +144,11 @@ namespace MathLibrary
 
         }
 
+        /// <summary>
+        /// Does the inverse of the values in thr vector
+        /// </summary>
+        /// <param name="rhs"></param>
+        /// <returns></returns>
         public static Vector2 operator -(Vector2 rhs)
         {
             return new Vector2 { X = -rhs.X, Y = -rhs.Y };

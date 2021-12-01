@@ -6,8 +6,11 @@ namespace MathLibrary
 {
     public struct Vector3
     {
+        //X axis locatioin
         public float X;
+        //Y axis location
         public float Y;
+        //Z axis location
         public float Z;
 
         public Vector3(float x, float y, float z)
@@ -19,10 +22,14 @@ namespace MathLibrary
 
 
         /// <summary>
-        /// Gets the length of the vector
+        /// Get the distance of two vectors vectors 
         /// </summary>
         public float Magnitude { get { return (float)Math.Sqrt(X * X + Y * Y + Z * Z); } }
 
+
+        /// <summary>
+        /// Gwts the vector its assigned to and 
+        /// normalizes it 
         public Vector3 Normalized
         {
             get
@@ -45,11 +52,11 @@ namespace MathLibrary
         }
 
         /// <summary>
-        /// Gets two vectors and multiplies there X, Y and Z
-        /// in order to add them togetther
+        /// Gets two vectors and multyplies there X, Y and Z's
+        /// in oder to add them together
         /// </summary>
-        /// <param name="lhs"> Left Hand Side</param>
-        /// <param name="rhs">Right Hand Side</param>
+        /// <param name="lhs">vector to left hand side</param>
+        /// <param name="rhs">vector to the right hand</param>
         /// <returns></returns>
         public static float DotProduct(Vector3 lhs, Vector3 rhs)
         {
@@ -57,7 +64,7 @@ namespace MathLibrary
         }
 
         /// <summary>
-        /// Perpecdicular Vector towards two 3D Vectors 
+        /// Gets the Perpecdicular Vector from two 3D Vectors 
         /// </summary>
         /// <param name="lhs">Left Hand Side</param>
         /// <param name="rhs">Right Hand Side</param>
